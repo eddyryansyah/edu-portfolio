@@ -85,7 +85,7 @@ export default function App() {
 
               <a
                 href={profile.cvUrl}
-                download
+                download="CV Edward Yulyardi Suparno.pdf"
                 className="inline-flex w-full items-center justify-center rounded-2xl border border-white/30 bg-transparent px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10 sm:w-auto"
               >
                 Download CV
@@ -126,9 +126,9 @@ export default function App() {
                 />
                 <ContactItem
                   icon="phone"
-                  label="Telepon"
+                  label="Telepon / WhatsApp"
                   value={profile.phone}
-                  href={`tel:${profile.phone}`}
+                  href={profile.whatsappUrl}
                 />
                 <ContactItem
                   icon="mail"
@@ -377,10 +377,12 @@ export default function App() {
 
             <a
               className="rounded-3xl bg-white p-5 text-slate-950 shadow-lg transition hover:-translate-y-1"
-              href={`tel:${profile.phone}`}
+              href={profile.whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
             >
               <Icon name="phone" className="mb-4 h-6 w-6" size={24} />
-              <p className="text-sm text-slate-500">Telepon</p>
+              <p className="text-sm text-slate-500">Telepon / WhatsApp</p>
               <p className="font-bold">{profile.phone}</p>
             </a>
 

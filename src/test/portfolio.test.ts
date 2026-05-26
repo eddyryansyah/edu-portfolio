@@ -20,6 +20,7 @@ describe("portfolio data", () => {
     expect(profile.phone).toBeTruthy();
     expect(profile.email).toContain("@");
     expect(profile.linkedin).toMatch(/^https:\/\//);
+    expect(profile.whatsappUrl).toMatch(/^https:\/\/wa\.me\/62/);
     expect(profile.photoUrl).toContain("edu-profile.jpg");
     expect(profile.cvUrl).toContain("edu-cv.pdf");
     expect(profile.summary.length).toBeGreaterThan(80);

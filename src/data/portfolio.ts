@@ -21,6 +21,7 @@ export type Profile = {
   phone: string;
   email: string;
   linkedin: string;
+  whatsappUrl: string;
   cvUrl: string;
   photoUrl: string;
   summary: string;
@@ -37,6 +38,7 @@ export const profile: Profile = {
   phone: "088808936362",
   email: "edward.yulyardi@gmail.com",
   linkedin: "https://www.linkedin.com/in/edward-yulyardi-suparno",
+  whatsappUrl: "https://wa.me/6288808936362",
   cvUrl: publicAsset("edu-cv.pdf"),
   photoUrl: publicAsset("edu-profile.jpg"),
   summary:
