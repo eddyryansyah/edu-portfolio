@@ -20,6 +20,7 @@ import {
   skills,
   softSkills,
 } from "./data/portfolio";
+import { Footer } from "./components/Footer";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -398,6 +399,8 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </main>
   );
 }
