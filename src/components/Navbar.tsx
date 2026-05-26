@@ -16,19 +16,36 @@ const smoothEase = [0.22, 1, 0.36, 1] as const;
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleNavigate = (targetId: string) => {
-    const targetElement = document.getElementById(targetId);
+  const NAVBAR_OFFSET = 120;
 
-    if (!targetElement) {
+  const handleNavigate = (targetId: string) => {
+    const scrollToTarget = () => {
+      const targetElement = document.getElementById(targetId);
+
+      if (!targetElement) {
+        return;
+      }
+
+      const targetPosition =
+        targetElement.getBoundingClientRect().top +
+        window.scrollY -
+        NAVBAR_OFFSET;
+
+      window.scrollTo({
+        top: Math.max(targetPosition, 0),
+        behavior: "smooth",
+      });
+
+      window.history.pushState(null, "", `#${targetId}`);
+    };
+
+    if (isOpen) {
+      setIsOpen(false);
+      window.setTimeout(scrollToTarget, 180);
       return;
     }
 
-    targetElement.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-
-    setIsOpen(false);
+    scrollToTarget();
   };
 
   return (
