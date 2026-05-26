@@ -129,6 +129,16 @@ base: "/edu-portfolio/";
 
 Deployment dilakukan melalui GitHub Actions agar proses build berjalan otomatis setiap kali ada perubahan pada branch utama.
 
+## Future Improvements
+
+Beberapa pengembangan yang dapat dilakukan ke depannya:
+
+- Menambahkan footer profesional berisi copyright, repository resmi, dan informasi pengembang.
+- Menambahkan mode gelap/terang agar pengalaman pengguna lebih fleksibel.
+- Menambahkan metadata SEO dan Open Graph agar link portfolio terlihat lebih baik saat dibagikan.
+- Menambahkan animasi section yang lebih halus tanpa mengganggu aksesibilitas.
+- Menambahkan halaman atau section khusus untuk dokumentasi pengembangan project.
+
 ## Author
 
 Dikembangkan oleh:
