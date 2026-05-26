@@ -42,9 +42,13 @@ Project ini dibuat menggunakan teknologi modern:
 - Responsive design untuk desktop dan mobile
 - Floating navbar dengan smooth scroll
 - Mobile navigation dengan animasi halus
+- Splash screen minimalis dengan intro singkat
 - Section portofolio yang terstruktur
 - Data portofolio dipisahkan ke file khusus
 - Fallback foto profil jika gambar gagal dimuat
+- Download CV dengan nama file formal
+- Kontak WhatsApp langsung melalui link `wa.me`
+- Footer profesional berisi copyright dan repository resmi
 - Unit test sederhana untuk validasi data portofolio
 - Siap deploy ke GitHub Pages
 
@@ -52,32 +56,43 @@ Project ini dibuat menggunakan teknologi modern:
 
 ```text
 edu-portfolio/
+├── .github/
+│   ├── workflows/
+│   │   └── deploy.yml
+│   └── FUNDING.yml
 ├── public/
-│ ├── edu-cv.pdf
-│ ├── edu-profile.jpg
-│ └── favicon.svg
+│   ├── edu-cv.pdf
+│   ├── edu-profile.jpg
+│   └── favicon.svg
 ├── src/
-│ ├── components/
-│ │ ├── BulletList.tsx
-│ │ ├── ContactItem.tsx
-│ │ ├── ExperienceCard.tsx
-│ │ ├── Icon.tsx
-│ │ ├── Navbar.tsx
-│ │ ├── ProfilePhoto.tsx
-│ │ ├── SectionTitle.tsx
-│ │ └── SkillPill.tsx
-│ ├── data/
-│ │ └── portfolio.ts
-│ ├── test/
-│ │ ├── portfolio.test.ts
-│ │ └── setup.ts
-│ ├── App.tsx
-│ ├── index.css
-│ └── main.tsx
+│   ├── components/
+│   │   ├── BulletList.tsx
+│   │   ├── ContactItem.tsx
+│   │   ├── ExperienceCard.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Icon.tsx
+│   │   ├── Navbar.tsx
+│   │   ├── ProfilePhoto.tsx
+│   │   ├── SectionTitle.tsx
+│   │   ├── SkillPill.tsx
+│   │   └── SplashScreen.tsx
+│   ├── data/
+│   │   └── portfolio.ts
+│   ├── test/
+│   │   ├── portfolio.test.ts
+│   │   └── setup.ts
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
 ├── index.html
+├── LICENSE
 ├── package.json
-├── vite.config.ts
-└── README.md
+├── package-lock.json
+├── README.md
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
 ```
 
 ## Getting Started
@@ -133,11 +148,11 @@ Deployment dilakukan melalui GitHub Actions agar proses build berjalan otomatis 
 
 Beberapa pengembangan yang dapat dilakukan ke depannya:
 
-- Menambahkan footer profesional berisi copyright, repository resmi, dan informasi pengembang.
-- Menambahkan mode gelap/terang agar pengalaman pengguna lebih fleksibel.
 - Menambahkan metadata SEO dan Open Graph agar link portfolio terlihat lebih baik saat dibagikan.
-- Menambahkan animasi section yang lebih halus tanpa mengganggu aksesibilitas.
-- Menambahkan halaman atau section khusus untuk dokumentasi pengembangan project.
+- Menambahkan mode gelap/terang agar pengalaman pengguna lebih fleksibel.
+- Menambahkan active state pada navbar sesuai section yang sedang dibuka.
+- Menambahkan pengujian komponen UI untuk navbar, footer, dan splash screen.
+- Menambahkan optimasi aksesibilitas lanjutan untuk navigasi keyboard dan screen reader.
 
 ## Author
 
