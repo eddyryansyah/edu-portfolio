@@ -10,6 +10,7 @@ import { Icon } from "./components/Icon";
 import { ProfilePhoto } from "./components/ProfilePhoto";
 import { SectionTitle } from "./components/SectionTitle";
 import { SkillPill } from "./components/SkillPill";
+import { Footer } from "./components/Footer";
 import {
   certifications,
   educationHighlights,
@@ -21,10 +22,20 @@ import {
   skills,
   softSkills,
 } from "./data/portfolio";
-import { Footer } from "./components/Footer";
+
+type Theme = "dark" | "light";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === "undefined") {
+      return "dark";
+    }
+
+    const savedTheme = window.localStorage.getItem("theme");
+
+    return savedTheme === "light" ? "light" : "dark";
+  });
 
   useEffect(() => {
     const loadingTimer = window.setTimeout(() => {
@@ -34,17 +45,26 @@ export default function App() {
     return () => window.clearTimeout(loadingTimer);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
+  };
+
   return (
-    <main className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-900">
+    <main className="min-h-screen overflow-x-hidden bg-[var(--page-bg)] text-[var(--text-title)] transition-colors duration-300">
       <AnimatePresence mode="wait">
         {isLoading ? <SplashScreen /> : null}
       </AnimatePresence>
 
-      <Navbar />
+      <Navbar theme={theme} onToggleTheme={toggleTheme} />
 
       <section
         id="home"
-        className="relative flex min-h-[100svh] scroll-mt-28 overflow-hidden bg-slate-950 text-white"
+        className="relative flex min-h-[100svh] scroll-mt-28 overflow-hidden bg-[var(--page-bg)]"
       >
         <HeroBackground />
 
@@ -55,26 +75,26 @@ export default function App() {
             transition={{ duration: 0.6 }}
             className="min-w-0"
           >
-            <p className="mb-4 inline-flex max-w-full rounded-full border border-white/20 px-4 py-2 text-xs font-medium text-slate-200 sm:text-sm">
+            <p className="mb-4 inline-flex max-w-full rounded-full border border-[var(--hero-badge-border)] bg-[var(--hero-badge-bg)] px-4 py-2 text-xs font-medium text-[var(--hero-badge-text)] backdrop-blur sm:text-sm">
               Professional Portfolio
             </p>
 
-            <h1 className="max-w-full break-words text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-6xl">
+            <h1 className="max-w-full break-words text-3xl font-extrabold leading-tight tracking-tight text-[var(--hero-text-title)] sm:text-4xl md:text-6xl">
               {profile.name}
             </h1>
 
-            <p className="mt-4 text-lg font-semibold text-slate-200 sm:text-xl md:text-2xl">
+            <p className="mt-4 text-lg font-semibold text-[var(--hero-text-muted)] sm:text-xl md:text-2xl">
               {profile.title}
             </p>
 
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base md:text-lg md:leading-8">
+            <p className="mt-6 max-w-2xl text-sm leading-7 text-[var(--hero-text-body)] sm:text-base md:text-lg md:leading-8">
               {profile.summary}
             </p>
 
             <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <a
                 href="#contact"
-                className="inline-flex w-full items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-bold text-slate-950 transition hover:bg-slate-200 sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-2xl bg-[var(--hero-primary-button-bg)] px-6 py-3 text-sm font-bold text-[var(--hero-primary-button-text)] transition hover:opacity-90 sm:w-auto"
               >
                 Hubungi Saya
                 <Icon name="external" className="ml-2 h-4 w-4" size={16} />
@@ -83,7 +103,7 @@ export default function App() {
               <a
                 href={profile.cvUrl}
                 download="CV Edward Yulyardi Suparno.pdf"
-                className="inline-flex w-full items-center justify-center rounded-2xl border border-white/30 bg-transparent px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10 sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-2xl border border-[var(--hero-secondary-button-border)] bg-transparent px-6 py-3 text-sm font-bold text-[var(--hero-secondary-button-text)] transition hover:bg-[var(--hero-secondary-button-hover)] sm:w-auto"
               >
                 Download CV
                 <Icon name="download" className="ml-2 h-4 w-4" size={16} />
@@ -166,7 +186,10 @@ export default function App() {
         </div>
       </section>
 
-      <section id="education" className="scroll-mt-28 bg-white py-16 md:py-20">
+      <section
+        id="education"
+        className="scroll-mt-28 bg-[var(--surface)] py-16 md:py-20"
+      >
         <div className="mx-auto max-w-6xl px-6">
           <SectionTitle
             eyebrow="Education"
@@ -175,20 +198,20 @@ export default function App() {
           />
 
           <div className="grid gap-6 lg:grid-cols-2">
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+            <article className="rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-6 shadow-sm md:p-8">
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-slate-950 text-white">
+                <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[var(--icon-bg)] text-[var(--icon-text)]">
                   <Icon name="graduation" size={24} />
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold">
+                  <h3 className="text-xl font-bold text-[var(--text-title)]">
                     Institut Transportasi dan Logistik Trisakti
                   </h3>
-                  <p className="mt-1 text-sm font-semibold text-slate-500">
+                  <p className="mt-1 text-sm font-semibold text-[var(--text-muted)]">
                     Jakarta, Indonesia | Aug 2017 - Aug 2024
                   </p>
-                  <p className="mt-3 font-semibold text-slate-900">
+                  <p className="mt-3 font-semibold text-[var(--text-title)]">
                     S1 Manajemen Logistik | IPK 3,66/4,00
                   </p>
                 </div>
@@ -199,18 +222,20 @@ export default function App() {
               </div>
             </article>
 
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+            <article className="rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-6 shadow-sm md:p-8">
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-slate-950 text-white">
+                <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[var(--icon-bg)] text-[var(--icon-text)]">
                   <Icon name="graduation" size={24} />
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold">SMA Taman Harapan 1</h3>
-                  <p className="mt-1 text-sm font-semibold text-slate-500">
+                  <h3 className="text-xl font-bold text-[var(--text-title)]">
+                    SMA Taman Harapan 1
+                  </h3>
+                  <p className="mt-1 text-sm font-semibold text-[var(--text-muted)]">
                     Bekasi, Indonesia | Jul 2014 - Mei 2017
                   </p>
-                  <p className="mt-3 font-semibold text-slate-900">
+                  <p className="mt-3 font-semibold text-[var(--text-title)]">
                     Ilmu Pengetahuan Alam
                   </p>
                 </div>
@@ -237,18 +262,20 @@ export default function App() {
             />
           </div>
 
-          <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+          <article className="rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-6 shadow-sm md:p-8">
             <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-slate-950 text-white">
+              <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[var(--icon-bg)] text-[var(--icon-text)]">
                 <Icon name="users" size={24} />
               </div>
 
               <div>
-                <h3 className="text-xl font-bold">Ekstrakurikuler Futsal</h3>
-                <p className="mt-1 text-sm font-semibold text-slate-500">
+                <h3 className="text-xl font-bold text-[var(--text-title)]">
+                  Ekstrakurikuler Futsal
+                </h3>
+                <p className="mt-1 text-sm font-semibold text-[var(--text-muted)]">
                   Ketua | Bekasi, Indonesia | Sep 2015 - Sep 2016
                 </p>
-                <p className="mt-3 leading-7 text-slate-600">
+                <p className="mt-3 leading-7 text-[var(--text-body)]">
                   Ekstrakurikuler olahraga futsal yang menjadi wadah
                   pengembangan minat, kerja sama tim, kedisiplinan, dan
                   kepemimpinan siswa.
@@ -263,7 +290,10 @@ export default function App() {
         </div>
       </section>
 
-      <section id="skills" className="scroll-mt-28 bg-white py-16 md:py-20">
+      <section
+        id="skills"
+        className="scroll-mt-28 bg-[var(--surface)] py-16 md:py-20"
+      >
         <div className="mx-auto max-w-6xl px-6">
           <SectionTitle
             eyebrow="Skills"
@@ -272,10 +302,15 @@ export default function App() {
           />
 
           <div className="grid gap-6 lg:grid-cols-3">
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8 lg:col-span-2">
+            <article className="rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-6 shadow-sm md:p-8 lg:col-span-2">
               <div className="mb-5 flex items-center gap-3">
-                <Icon name="clipboard" className="h-6 w-6" size={24} />
-                <h3 className="text-2xl font-bold">Hard Skills</h3>
+                <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[var(--icon-bg)] text-[var(--icon-text)]">
+                  <Icon name="clipboard" size={24} />
+                </div>
+
+                <h3 className="text-2xl font-bold text-[var(--text-title)]">
+                  Hard Skills
+                </h3>
               </div>
 
               <div className="flex flex-wrap gap-3">
@@ -285,22 +320,27 @@ export default function App() {
               </div>
             </article>
 
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+            <article className="rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-6 shadow-sm md:p-8">
               <div className="mb-5 flex items-center gap-3">
-                <Icon name="award" className="h-6 w-6" size={24} />
-                <h3 className="text-2xl font-bold">Sertifikasi</h3>
+                <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[var(--icon-bg)] text-[var(--icon-text)]">
+                  <Icon name="award" size={24} />
+                </div>
+
+                <h3 className="text-2xl font-bold text-[var(--text-title)]">
+                  Sertifikasi
+                </h3>
               </div>
 
               <div className="grid gap-4">
                 {certifications.map((certification) => (
                   <div
                     key={certification.title}
-                    className="rounded-2xl bg-slate-100 p-4"
+                    className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4"
                   >
-                    <p className="font-bold text-slate-950">
+                    <p className="font-bold text-[var(--text-title)]">
                       {certification.title}
                     </p>
-                    <p className="mt-1 text-sm text-slate-600">
+                    <p className="mt-1 text-sm text-[var(--text-body)]">
                       {certification.details}
                     </p>
                   </div>
@@ -308,34 +348,44 @@ export default function App() {
               </div>
             </article>
 
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8 lg:col-span-2">
+            <article className="rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-6 shadow-sm md:p-8 lg:col-span-2">
               <div className="mb-5 flex items-center gap-3">
-                <Icon name="users" className="h-6 w-6" size={24} />
-                <h3 className="text-2xl font-bold">Soft Skills</h3>
+                <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[var(--icon-bg)] text-[var(--icon-text)]">
+                  <Icon name="messageCircle" size={24} />
+                </div>
+
+                <h3 className="text-2xl font-bold text-[var(--text-title)]">
+                  Soft Skills
+                </h3>
               </div>
 
               <div className="flex flex-wrap gap-3">
                 {softSkills.map((skill) => (
-                  <SkillPill key={skill} variant="dark">
-                    {skill}
-                  </SkillPill>
+                  <SkillPill key={skill}>{skill}</SkillPill>
                 ))}
               </div>
             </article>
 
-            <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+            <article className="rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-6 shadow-sm md:p-8">
               <div className="mb-5 flex items-center gap-3">
-                <Icon name="language" className="h-6 w-6" size={24} />
-                <h3 className="text-2xl font-bold">Bahasa</h3>
+                <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[var(--icon-bg)] text-[var(--icon-text)]">
+                  <Icon name="language" size={24} />
+                </div>
+
+                <h3 className="text-2xl font-bold text-[var(--text-title)]">
+                  Bahasa
+                </h3>
               </div>
 
               <div className="grid gap-3">
                 {languages.map((language) => (
                   <div
                     key={language}
-                    className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200"
+                    className="rounded-2xl bg-[var(--surface)] p-4 shadow-sm ring-1 ring-[var(--border)]"
                   >
-                    <p className="font-bold">{language}</p>
+                    <p className="font-bold text-[var(--text-title)]">
+                      {language}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -346,51 +396,59 @@ export default function App() {
 
       <section
         id="contact"
-        className="scroll-mt-28 bg-slate-950 px-6 py-16 text-white md:py-20"
+        className="scroll-mt-28 bg-[var(--contact-bg)] px-6 py-12 text-[var(--contact-text)] md:py-16"
       >
-        <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1fr_1.1fr] md:items-center">
+        <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
           <div>
-            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.25em] text-slate-400">
+            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.25em] text-[var(--text-muted)]">
               Contact
             </p>
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-[var(--contact-text)] md:text-4xl">
               Tertarik untuk bekerja sama?
             </h2>
-            <p className="mt-4 max-w-xl leading-8 text-slate-300">
+            <p className="mt-4 max-w-xl leading-8 text-[var(--contact-muted)]">
               Terbuka untuk peluang kerja di bidang administrasi inventory,
               marketplace, gudang, operasional, dan logistik.
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             <a
-              className="rounded-3xl bg-white p-5 text-slate-950 shadow-lg transition hover:-translate-y-1"
+              className="group rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-5 text-[var(--text-title)] shadow-sm transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
               href={`mailto:${profile.email}`}
             >
-              <Icon name="mail" className="mb-4 h-6 w-6" size={24} />
-              <p className="text-sm text-slate-500">Email</p>
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--icon-bg)] text-[var(--icon-text)] transition group-hover:scale-105">
+                <Icon name="mail" className="h-6 w-6" size={24} />
+              </div>
+              <p className="text-sm text-[var(--text-muted)]">Email</p>
               <p className="break-words font-bold">{profile.email}</p>
             </a>
 
             <a
-              className="rounded-3xl bg-white p-5 text-slate-950 shadow-lg transition hover:-translate-y-1"
+              className="group rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-5 text-[var(--text-title)] shadow-sm transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
               href={profile.whatsappUrl}
               target="_blank"
               rel="noreferrer"
             >
-              <Icon name="phone" className="mb-4 h-6 w-6" size={24} />
-              <p className="text-sm text-slate-500">Telepon / WhatsApp</p>
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--icon-bg)] text-[var(--icon-text)] transition group-hover:scale-105">
+                <Icon name="phone" className="h-6 w-6" size={24} />
+              </div>
+              <p className="text-sm text-[var(--text-muted)]">
+                Telepon / WhatsApp
+              </p>
               <p className="font-bold">{profile.phone}</p>
             </a>
 
             <a
-              className="rounded-3xl bg-white p-5 text-slate-950 shadow-lg transition hover:-translate-y-1 sm:col-span-2"
+              className="group rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-5 text-[var(--text-title)] shadow-sm transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg sm:col-span-2"
               href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
             >
-              <Icon name="linkedin" className="mb-4 h-6 w-6" size={24} />
-              <p className="text-sm text-slate-500">LinkedIn</p>
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--icon-bg)] text-[var(--icon-text)] transition group-hover:scale-105">
+                <Icon name="linkedin" className="h-6 w-6" size={24} />
+              </div>
+              <p className="text-sm text-[var(--text-muted)]">LinkedIn</p>
               <p className="break-words font-bold">
                 linkedin.com/in/edward-yulyardi-suparno
               </p>

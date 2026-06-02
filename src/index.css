@@ -1,7 +1,127 @@
 @import "tailwindcss";
 
+:root {
+  --page-bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-soft: #f1f5f9;
+  --surface-elevated: #ffffff;
+  --text-title: #020617;
+  --text-body: #475569;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --icon-bg: #020617;
+  --icon-text: #ffffff;
+  --pill-bg: #ffffff;
+  --pill-text: #334155;
+
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  --nav-border: rgba(226, 232, 240, 0.8);
+  --nav-title: #020617;
+  --nav-subtitle: #64748b;
+  --nav-link: #475569;
+  --nav-hover-bg: #f1f5f9;
+  --nav-hover-text: #020617;
+  --nav-active-bg: #020617;
+  --nav-active-text: #ffffff;
+  --nav-logo-bg: #020617;
+  --nav-logo-text: #ffffff;
+
+  --hero-text-title: #020617;
+  --hero-text-body: #334155;
+  --hero-text-muted: #475569;
+  --hero-badge-bg: rgba(255, 255, 255, 0.72);
+  --hero-badge-border: rgba(148, 163, 184, 0.32);
+  --hero-badge-text: #334155;
+  --hero-primary-button-bg: #020617;
+  --hero-primary-button-text: #ffffff;
+  --hero-secondary-button-border: rgba(15, 23, 42, 0.18);
+  --hero-secondary-button-text: #020617;
+  --hero-secondary-button-hover: rgba(15, 23, 42, 0.06);
+
+  --experience-panel-bg: #f8fafc;
+  --experience-panel-text: #020617;
+  --experience-panel-muted: #64748b;
+  --experience-icon-text: #ffffff;
+
+  --contact-bg: #f8fafc;
+  --contact-text: #020617;
+  --contact-muted: #475569;
+
+  --footer-bg: #f8fafc;
+  --footer-text: #020617;
+  --footer-muted: #64748b;
+  --footer-border: #e2e8f0;
+  --footer-link: #334155;
+  --footer-link-hover: #020617;
+}
+
+html[data-theme="dark"] {
+  --page-bg: #0b1120;
+  --surface: #0f172a;
+  --surface-soft: #1e293b;
+  --surface-elevated: #0f172a;
+  --text-title: #f8fafc;
+  --text-body: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --icon-bg: #f8fafc;
+  --icon-text: #020617;
+  --pill-bg: #0f172a;
+  --pill-text: #cbd5e1;
+
+  --nav-bg: rgba(15, 23, 42, 0.88);
+  --nav-border: rgba(51, 65, 85, 0.8);
+  --nav-title: #f8fafc;
+  --nav-subtitle: #94a3b8;
+  --nav-link: #cbd5e1;
+  --nav-hover-bg: rgba(51, 65, 85, 0.9);
+  --nav-hover-text: #ffffff;
+  --nav-active-bg: #f8fafc;
+  --nav-active-text: #020617;
+  --nav-logo-bg: #f8fafc;
+  --nav-logo-text: #020617;
+
+  --hero-text-title: #ffffff;
+  --hero-text-body: #cbd5e1;
+  --hero-text-muted: #e2e8f0;
+  --hero-badge-bg: transparent;
+  --hero-badge-border: rgba(255, 255, 255, 0.2);
+  --hero-badge-text: #e2e8f0;
+  --hero-primary-button-bg: #ffffff;
+  --hero-primary-button-text: #020617;
+  --hero-secondary-button-border: rgba(255, 255, 255, 0.3);
+  --hero-secondary-button-text: #ffffff;
+  --hero-secondary-button-hover: rgba(255, 255, 255, 0.1);
+
+  --experience-panel-bg: #020617;
+  --experience-panel-text: #ffffff;
+  --experience-panel-muted: #cbd5e1;
+  --experience-icon-text: #ffffff;
+
+  --contact-bg: #020617;
+  --contact-text: #ffffff;
+  --contact-muted: #cbd5e1;
+
+  --footer-bg: #020617;
+  --footer-text: #ffffff;
+  --footer-muted: #94a3b8;
+  --footer-border: #1e293b;
+  --footer-link: #cbd5e1;
+  --footer-link-hover: #ffffff;
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 10rem;
+}
+
+@media (min-width: 768px) {
+  section[id] {
+    scroll-margin-top: 7rem;
+  }
 }
 
 .hero-background {
@@ -14,6 +134,21 @@ html {
 .hero-background-base {
   position: absolute;
   inset: 0;
+  background:
+    radial-gradient(
+      circle at 88% 28%,
+      rgba(96, 165, 250, 0.24),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 82% 78%,
+      rgba(203, 213, 225, 0.18),
+      transparent 34%
+    ),
+    linear-gradient(135deg, #f8fafc 0%, #eef2ff 48%, #e2e8f0 100%);
+}
+
+html[data-theme="dark"] .hero-background-base {
   background:
     radial-gradient(
       circle at 88% 28%,
@@ -83,6 +218,22 @@ html {
   background:
     radial-gradient(
       circle at 24% 44%,
+      rgba(248, 250, 252, 0.46),
+      rgba(248, 250, 252, 0.66) 38%,
+      transparent 68%
+    ),
+    linear-gradient(
+      to right,
+      rgba(248, 250, 252, 0.82) 0%,
+      rgba(248, 250, 252, 0.52) 42%,
+      rgba(248, 250, 252, 0.08) 100%
+    );
+}
+
+html[data-theme="dark"] .hero-text-shield {
+  background:
+    radial-gradient(
+      circle at 24% 44%,
       rgba(2, 6, 23, 0.42),
       rgba(2, 6, 23, 0.62) 38%,
       transparent 68%
@@ -98,6 +249,22 @@ html {
 .hero-background-vignette {
   position: absolute;
   inset: 0;
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 0%,
+      rgba(248, 250, 252, 0.08) 58%,
+      rgba(203, 213, 225, 0.38) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(248, 250, 252, 0.02),
+      rgba(248, 250, 252, 0.12) 48%,
+      rgba(226, 232, 240, 0.6) 100%
+    );
+}
+
+html[data-theme="dark"] .hero-background-vignette {
   background:
     radial-gradient(
       circle at center,

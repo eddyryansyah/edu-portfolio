@@ -6,8 +6,8 @@ type SkillPillProps = {
 export function SkillPill({ children, variant = "light" }: SkillPillProps) {
   const className =
     variant === "dark"
-      ? "rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white"
-      : "rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm";
+      ? "rounded-full bg-[var(--pill-dark-bg)] px-4 py-2 text-sm font-semibold text-[var(--pill-dark-text)]"
+      : "rounded-full border border-[var(--border)] bg-[var(--pill-bg)] px-4 py-2 text-sm font-semibold text-[var(--pill-text)] shadow-sm";
 
   return <span className={className}>{children}</span>;
 }

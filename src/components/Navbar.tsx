@@ -1,6 +1,14 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { profile } from "../data/portfolio";
+import { ThemeToggle } from "./ThemeToggle";
+
+type Theme = "dark" | "light";
+
+type NavbarProps = {
+  theme: Theme;
+  onToggleTheme: () => void;
+};
 
 const navItems = [
   { label: "Home", href: "home" },
@@ -11,11 +19,15 @@ const navItems = [
   { label: "Contact", href: "contact" },
 ];
 
-const NAVBAR_OFFSET = 120;
+const DESKTOP_NAVBAR_OFFSET = 120;
+const MOBILE_NAVBAR_OFFSET = 160;
 const BOTTOM_THRESHOLD = 32;
 const smoothEase = [0.22, 1, 0.36, 1] as const;
 
-export function Navbar() {
+const getNavbarOffset = () =>
+  window.innerWidth < 768 ? MOBILE_NAVBAR_OFFSET : DESKTOP_NAVBAR_OFFSET;
+
+export function Navbar({ theme, onToggleTheme }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
@@ -32,7 +44,8 @@ export function Navbar() {
         return;
       }
 
-      const scrollPosition = window.scrollY + NAVBAR_OFFSET + 1;
+      const navbarOffset = getNavbarOffset();
+      const scrollPosition = window.scrollY + navbarOffset + 1;
       let currentSection = "home";
 
       for (const item of navItems) {
@@ -72,7 +85,7 @@ export function Navbar() {
       const targetPosition =
         targetElement.getBoundingClientRect().top +
         window.scrollY -
-        NAVBAR_OFFSET;
+        getNavbarOffset();
 
       window.scrollTo({
         top: Math.max(targetPosition, 0),
@@ -97,7 +110,7 @@ export function Navbar() {
       <motion.nav
         layout
         transition={{ duration: 0.32, ease: smoothEase }}
-        className="overflow-hidden rounded-[1.75rem] border border-white/20 bg-white/90 px-3 py-3 shadow-xl shadow-slate-950/10 backdrop-blur-xl sm:px-4"
+        className="overflow-hidden rounded-[1.75rem] border border-[var(--nav-border)] bg-[var(--nav-bg)] px-3 py-3 shadow-xl shadow-slate-950/10 backdrop-blur-xl sm:px-4"
       >
         <div className="flex items-center justify-between">
           <button
@@ -106,45 +119,51 @@ export function Navbar() {
             className="flex min-w-0 items-center gap-3 text-left"
             aria-label="Go to home section"
           >
-            <div className="flex h-10 w-10 flex-none items-center justify-center rounded-2xl bg-slate-950 text-sm font-bold text-white">
+            <div className="flex h-10 w-10 flex-none items-center justify-center rounded-2xl bg-[var(--nav-logo-bg)] text-sm font-bold text-[var(--nav-logo-text)]">
               {profile.initials}
             </div>
 
             <div className="min-w-0 leading-tight">
-              <p className="truncate text-sm font-bold text-slate-950 sm:text-base">
+              <p className="truncate text-sm font-bold text-[var(--nav-title)] sm:text-base">
                 Edward Portfolio
               </p>
-              <p className="truncate text-xs text-slate-500">
+              <p className="truncate text-xs text-[var(--nav-subtitle)]">
                 Professional Profile
               </p>
             </div>
           </button>
 
-          <div className="hidden items-center gap-1 md:flex">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.href;
+          <div className="hidden items-center gap-3 md:flex">
+            <div className="flex items-center gap-1">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href;
 
-              return (
-                <button
-                  key={item.href}
-                  type="button"
-                  onClick={() => handleNavigate(item.href)}
-                  aria-current={isActive ? "page" : undefined}
-                  className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                    isActive
-                      ? "bg-slate-950 text-white shadow-sm"
-                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
+                return (
+                  <button
+                    key={item.href}
+                    type="button"
+                    onClick={() => handleNavigate(item.href)}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                      isActive
+                        ? "bg-[var(--nav-active-bg)] text-[var(--nav-active-text)] shadow-sm"
+                        : "text-[var(--nav-link)] hover:bg-[var(--nav-hover-bg)] hover:text-[var(--nav-hover-text)]"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="h-8 w-px bg-[var(--border)]" aria-hidden="true" />
+
+            <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           </div>
 
           <button
             type="button"
-            className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-2xl border border-slate-200 bg-white/80 text-slate-950 shadow-sm transition hover:bg-slate-100 md:hidden"
+            className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--text-title)] shadow-sm transition hover:bg-[var(--surface-soft)] md:hidden"
             aria-label="Toggle navigation menu"
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
@@ -212,7 +231,7 @@ export function Navbar() {
                 animate={{ y: 0, filter: "blur(0px)" }}
                 exit={{ y: -4, filter: "blur(4px)" }}
                 transition={{ duration: 0.26, ease: smoothEase }}
-                className="mt-3 grid gap-1 border-t border-slate-200 pt-3"
+                className="mt-3 grid gap-1 border-t border-[var(--border)] pt-3"
               >
                 {navItems.map((item) => {
                   const isActive = activeSection === item.href;
@@ -225,14 +244,27 @@ export function Navbar() {
                       aria-current={isActive ? "page" : undefined}
                       className={`rounded-2xl px-4 py-3 text-left text-sm font-semibold transition ${
                         isActive
-                          ? "bg-slate-950 text-white"
-                          : "text-slate-700 hover:bg-slate-100 hover:text-slate-950"
+                          ? "bg-[var(--nav-active-bg)] text-[var(--nav-active-text)]"
+                          : "text-[var(--nav-link)] hover:bg-[var(--nav-hover-bg)] hover:text-[var(--nav-hover-text)]"
                       }`}
                     >
                       {item.label}
                     </button>
                   );
                 })}
+
+                <div className="mt-2 flex items-center justify-between rounded-2xl bg-[var(--surface-soft)] px-4 py-3">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                      Appearance
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-[var(--text-title)]">
+                      {theme === "dark" ? "Dark Mode" : "Light Mode"}
+                    </p>
+                  </div>
+
+                  <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+                </div>
               </motion.div>
             </motion.div>
           ) : null}
