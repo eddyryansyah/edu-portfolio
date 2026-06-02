@@ -41,15 +41,20 @@ Project ini dibuat menggunakan teknologi modern:
 
 - Responsive design untuk desktop dan mobile
 - Floating navbar dengan smooth scroll
+- Active navbar state sesuai section yang sedang dibuka
 - Mobile navigation dengan animasi halus
+- Theme toggle untuk mode terang dan gelap
+- Hero section dengan ambient background profesional
 - Splash screen minimalis dengan intro singkat
 - Section portofolio yang terstruktur
 - Data portofolio dipisahkan ke file khusus
 - Fallback foto profil jika gambar gagal dimuat
 - Download CV dengan nama file formal
 - Kontak WhatsApp langsung melalui link `wa.me`
+- SEO dan Open Graph metadata untuk preview link
+- Accessibility improvement untuk keyboard navigation dan screen reader
 - Footer profesional berisi copyright dan repository resmi
-- Unit test sederhana untuk validasi data portofolio
+- Unit test untuk data dan komponen UI utama
 - Siap deploy ke GitHub Pages
 
 ## Project Structure
@@ -63,24 +68,33 @@ edu-portfolio/
 ├── public/
 │   ├── edu-cv.pdf
 │   ├── edu-profile.jpg
-│   └── favicon.svg
+│   ├── favicon.svg
+│   └── og-image.svg
 ├── src/
 │   ├── components/
 │   │   ├── BulletList.tsx
 │   │   ├── ContactItem.tsx
 │   │   ├── ExperienceCard.tsx
 │   │   ├── Footer.tsx
+│   │   ├── HeroBackground.tsx
 │   │   ├── Icon.tsx
 │   │   ├── Navbar.tsx
 │   │   ├── ProfilePhoto.tsx
 │   │   ├── SectionTitle.tsx
 │   │   ├── SkillPill.tsx
-│   │   └── SplashScreen.tsx
+│   │   ├── SplashScreen.tsx
+│   │   └── ThemeToggle.tsx
 │   ├── data/
 │   │   └── portfolio.ts
 │   ├── test/
+│   │   ├── app-contact.test.tsx
+│   │   ├── app-theme.test.tsx
+│   │   ├── footer.test.tsx
+│   │   ├── navbar.test.tsx
 │   │   ├── portfolio.test.ts
-│   │   └── setup.ts
+│   │   ├── setup.ts
+│   │   ├── splash-screen.test.tsx
+│   │   └── theme-toggle.test.tsx
 │   ├── App.tsx
 │   ├── index.css
 │   └── main.tsx
@@ -148,11 +162,11 @@ Deployment dilakukan melalui GitHub Actions agar proses build berjalan otomatis 
 
 Beberapa pengembangan yang dapat dilakukan ke depannya:
 
-- Menambahkan metadata SEO dan Open Graph agar link portfolio terlihat lebih baik saat dibagikan.
-- Menambahkan mode gelap/terang agar pengalaman pengguna lebih fleksibel.
-- Menambahkan active state pada navbar sesuai section yang sedang dibuka.
-- Menambahkan pengujian komponen UI untuk navbar, footer, dan splash screen.
-- Menambahkan optimasi aksesibilitas lanjutan untuk navigasi keyboard dan screen reader.
+- Menambahkan preview sertifikat dalam bentuk modal agar pengguna dapat melihat bukti sertifikasi tanpa meninggalkan halaman.
+- Menambahkan file sertifikat resmi pada folder khusus agar data sertifikasi lebih terdokumentasi.
+- Menambahkan animasi transisi lanjutan pada certificate preview modal.
+- Menambahkan pengujian untuk fitur preview sertifikat ketika fitur tersebut sudah dibuat.
+- Menambahkan optimasi konten berdasarkan kebutuhan terbaru Edward Yulyardi Suparno.
 
 ## Author
 
