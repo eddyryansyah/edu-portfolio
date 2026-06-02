@@ -60,11 +60,19 @@ export default function App() {
         {isLoading ? <SplashScreen /> : null}
       </AnimatePresence>
 
+      <a
+        href="#home"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-2xl focus:bg-white focus:px-4 focus:py-3 focus:text-sm focus:font-bold focus:text-slate-950 focus:shadow-xl"
+      >
+        Lewati ke konten utama
+      </a>
+
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
 
       <section
         id="home"
-        className="relative flex min-h-[100svh] scroll-mt-28 overflow-hidden bg-[var(--page-bg)]"
+        tabIndex={-1}
+        className="relative flex min-h-[100svh] scroll-mt-28 overflow-hidden bg-[var(--page-bg)] focus:outline-none"
       >
         <HeroBackground />
 
@@ -94,6 +102,7 @@ export default function App() {
             <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <a
                 href="#contact"
+                aria-label="Hubungi Edward Yulyardi Suparno"
                 className="inline-flex w-full items-center justify-center rounded-2xl bg-[var(--hero-primary-button-bg)] px-6 py-3 text-sm font-bold text-[var(--hero-primary-button-text)] transition hover:opacity-90 sm:w-auto"
               >
                 Hubungi Saya
@@ -103,6 +112,7 @@ export default function App() {
               <a
                 href={profile.cvUrl}
                 download="CV Edward Yulyardi Suparno.pdf"
+                aria-label="Download CV Edward Yulyardi Suparno"
                 className="inline-flex w-full items-center justify-center rounded-2xl border border-[var(--hero-secondary-button-border)] bg-transparent px-6 py-3 text-sm font-bold text-[var(--hero-secondary-button-text)] transition hover:bg-[var(--hero-secondary-button-hover)] sm:w-auto"
               >
                 Download CV
@@ -416,6 +426,7 @@ export default function App() {
             <a
               className="group rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-5 text-[var(--text-title)] shadow-sm transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
               href={`mailto:${profile.email}`}
+              aria-label={`Kirim email ke ${profile.email}`}
             >
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--icon-bg)] text-[var(--icon-text)] transition group-hover:scale-105">
                 <Icon name="mail" className="h-6 w-6" size={24} />
@@ -427,6 +438,7 @@ export default function App() {
             <a
               className="group rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-5 text-[var(--text-title)] shadow-sm transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
               href={profile.whatsappUrl}
+              aria-label={`Hubungi ${profile.name} melalui WhatsApp`}
               target="_blank"
               rel="noreferrer"
             >
@@ -442,6 +454,7 @@ export default function App() {
             <a
               className="group rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-5 text-[var(--text-title)] shadow-sm transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg sm:col-span-2"
               href={profile.linkedin}
+              aria-label={`Buka profil LinkedIn ${profile.name}`}
               target="_blank"
               rel="noreferrer"
             >
