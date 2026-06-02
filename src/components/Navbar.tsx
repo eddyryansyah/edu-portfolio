@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { profile } from "../data/portfolio";
 
 const navItems = [
@@ -11,12 +11,55 @@ const navItems = [
   { label: "Contact", href: "contact" },
 ];
 
+const NAVBAR_OFFSET = 120;
+const BOTTOM_THRESHOLD = 32;
 const smoothEase = [0.22, 1, 0.36, 1] as const;
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
-  const NAVBAR_OFFSET = 120;
+  useEffect(() => {
+    const handleScroll = () => {
+      const documentHeight = document.documentElement.scrollHeight;
+      const viewportHeight = window.innerHeight;
+      const maxScrollPosition = documentHeight - viewportHeight;
+      const isNearBottom =
+        window.scrollY >= maxScrollPosition - BOTTOM_THRESHOLD;
+
+      if (isNearBottom) {
+        setActiveSection(navItems[navItems.length - 1].href);
+        return;
+      }
+
+      const scrollPosition = window.scrollY + NAVBAR_OFFSET + 1;
+      let currentSection = "home";
+
+      for (const item of navItems) {
+        const sectionElement = document.getElementById(item.href);
+
+        if (!sectionElement) {
+          continue;
+        }
+
+        if (sectionElement.offsetTop <= scrollPosition) {
+          currentSection = item.href;
+        }
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
 
   const handleNavigate = (targetId: string) => {
     const scrollToTarget = () => {
@@ -37,6 +80,7 @@ export function Navbar() {
       });
 
       window.history.pushState(null, "", `#${targetId}`);
+      setActiveSection(targetId);
     };
 
     if (isOpen) {
@@ -60,6 +104,7 @@ export function Navbar() {
             type="button"
             onClick={() => handleNavigate("home")}
             className="flex min-w-0 items-center gap-3 text-left"
+            aria-label="Go to home section"
           >
             <div className="flex h-10 w-10 flex-none items-center justify-center rounded-2xl bg-slate-950 text-sm font-bold text-white">
               {profile.initials}
@@ -76,16 +121,25 @@ export function Navbar() {
           </button>
 
           <div className="hidden items-center gap-1 md:flex">
-            {navItems.map((item) => (
-              <button
-                key={item.href}
-                type="button"
-                onClick={() => handleNavigate(item.href)}
-                className="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 hover:text-slate-950"
-              >
-                {item.label}
-              </button>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href;
+
+              return (
+                <button
+                  key={item.href}
+                  type="button"
+                  onClick={() => handleNavigate(item.href)}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                    isActive
+                      ? "bg-slate-950 text-white shadow-sm"
+                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
           </div>
 
           <button
@@ -160,16 +214,25 @@ export function Navbar() {
                 transition={{ duration: 0.26, ease: smoothEase }}
                 className="mt-3 grid gap-1 border-t border-slate-200 pt-3"
               >
-                {navItems.map((item) => (
-                  <button
-                    key={item.href}
-                    type="button"
-                    onClick={() => handleNavigate(item.href)}
-                    className="rounded-2xl px-4 py-3 text-left text-sm font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-slate-950"
-                  >
-                    {item.label}
-                  </button>
-                ))}
+                {navItems.map((item) => {
+                  const isActive = activeSection === item.href;
+
+                  return (
+                    <button
+                      key={item.href}
+                      type="button"
+                      onClick={() => handleNavigate(item.href)}
+                      aria-current={isActive ? "page" : undefined}
+                      className={`rounded-2xl px-4 py-3 text-left text-sm font-semibold transition ${
+                        isActive
+                          ? "bg-slate-950 text-white"
+                          : "text-slate-700 hover:bg-slate-100 hover:text-slate-950"
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  );
+                })}
               </motion.div>
             </motion.div>
           ) : null}
