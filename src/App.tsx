@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { SplashScreen } from "./components/SplashScreen";
 import { Navbar } from "./components/Navbar";
+import { HeroBackground } from "./components/HeroBackground";
 import { BulletList } from "./components/BulletList";
 import { ContactItem } from "./components/ContactItem";
 import { ExperienceCard } from "./components/ExperienceCard";
@@ -43,15 +44,11 @@ export default function App() {
 
       <section
         id="home"
-        className="relative scroll-mt-28 overflow-hidden bg-slate-950 text-white"
+        className="relative flex min-h-[100svh] scroll-mt-28 overflow-hidden bg-slate-950 text-white"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800" />
-        <div className="absolute inset-0 opacity-20" aria-hidden="true">
-          <div className="absolute -left-24 top-20 h-72 w-72 rounded-full bg-white blur-3xl" />
-          <div className="absolute -right-20 bottom-10 h-96 w-96 rounded-full bg-slate-400 blur-3xl" />
-        </div>
+        <HeroBackground />
 
-        <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-16 pt-32 sm:px-6 md:grid-cols-[1.05fr_0.95fr] md:items-center md:pb-28 md:pt-36">
+        <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 pb-16 pt-32 sm:px-6 md:grid-cols-[1.05fr_0.95fr] md:items-center md:pb-28 md:pt-36">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
