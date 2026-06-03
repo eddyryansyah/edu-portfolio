@@ -69,7 +69,7 @@ edu-portfolio/
 │   ├── edu-cv.pdf
 │   ├── edu-profile.jpg
 │   ├── favicon.svg
-│   └── og-image.svg
+│   └── og-image.png
 ├── src/
 │   ├── components/
 │   │   ├── BulletList.tsx
