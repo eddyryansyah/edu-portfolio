@@ -24,7 +24,7 @@ describe("App contact links", () => {
   it("renders CV download link with a formal filename", () => {
     render(<App />);
 
-    const cvLink = screen.getByRole("link", { name: /download cv/i });
+    const cvLink = screen.getByRole("link", { name: /unduh cv/i });
 
     expect(cvLink).toHaveAttribute("href", profile.cvUrl);
     expect(cvLink).toHaveAttribute(

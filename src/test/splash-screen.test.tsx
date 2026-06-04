@@ -8,7 +8,7 @@ describe("SplashScreen", () => {
 
     expect(
       screen.getByRole("status", {
-        name: /loading page/i,
+        name: /memuat halaman/i,
       }),
     ).toBeInTheDocument();
   });

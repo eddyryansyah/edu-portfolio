@@ -84,7 +84,7 @@ export default function App() {
             className="min-w-0"
           >
             <p className="mb-4 inline-flex max-w-full rounded-full border border-[var(--hero-badge-border)] bg-[var(--hero-badge-bg)] px-4 py-2 text-xs font-medium text-[var(--hero-badge-text)] backdrop-blur sm:text-sm">
-              Professional Portfolio
+              Portofolio Profesional
             </p>
 
             <h1 className="max-w-full break-words text-3xl font-extrabold leading-tight tracking-tight text-[var(--hero-text-title)] sm:text-4xl md:text-6xl">
@@ -112,10 +112,10 @@ export default function App() {
               <a
                 href={profile.cvUrl}
                 download="CV Edward Yulyardi Suparno.pdf"
-                aria-label="Download CV Edward Yulyardi Suparno"
+                aria-label="Unduh CV Edward Yulyardi Suparno"
                 className="inline-flex w-full items-center justify-center rounded-2xl border border-[var(--hero-secondary-button-border)] bg-transparent px-6 py-3 text-sm font-bold text-[var(--hero-secondary-button-text)] transition hover:bg-[var(--hero-secondary-button-hover)] sm:w-auto"
               >
-                Download CV
+                Unduh CV
                 <Icon name="download" className="ml-2 h-4 w-4" size={16} />
               </a>
             </div>
@@ -140,7 +140,7 @@ export default function App() {
                     Profil Profesional
                   </h2>
                   <p className="mt-1 text-sm leading-6 text-slate-600">
-                    Inventory, Marketplace, dan Operasional
+                    Inventori, Marketplace, dan Operasional
                   </p>
                 </div>
               </div>
@@ -180,9 +180,9 @@ export default function App() {
         className="mx-auto max-w-6xl scroll-mt-28 px-6 py-16 md:py-20"
       >
         <SectionTitle
-          eyebrow="Experience"
+          eyebrow="Pengalaman"
           title="Pengalaman Kerja"
-          description="Pengalaman di bidang administrasi inventory, pengelolaan stok, marketplace, pelayanan pelanggan, pemrosesan pesanan, dan laporan operasional."
+          description="Pengalaman di bidang administrasi inventori, pengelolaan stok, marketplace, pelayanan pelanggan, pemrosesan pesanan, dan pelaporan operasional."
         />
 
         <div className="grid gap-6">
@@ -202,7 +202,7 @@ export default function App() {
       >
         <div className="mx-auto max-w-6xl px-6">
           <SectionTitle
-            eyebrow="Education"
+            eyebrow="Pendidikan"
             title="Pendidikan"
             description="Latar belakang pendidikan formal yang mendukung kemampuan logistik, administrasi, analisis, kedisiplinan, dan kerja sama."
           />
@@ -266,7 +266,7 @@ export default function App() {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <SectionTitle
-              eyebrow="Organization"
+              eyebrow="Organisasi"
               title="Pengalaman Organisasi"
               description="Pengalaman kepemimpinan yang mendukung kemampuan koordinasi, komunikasi, kedisiplinan, dan kerja sama tim."
             />
@@ -306,9 +306,9 @@ export default function App() {
       >
         <div className="mx-auto max-w-6xl px-6">
           <SectionTitle
-            eyebrow="Skills"
+            eyebrow="Keterampilan"
             title="Keterampilan & Sertifikasi"
-            description="Kombinasi kemampuan administrasi, pengolahan data, inventory, marketplace, dan kompetensi pendukung di bidang logistik."
+            description="Kombinasi kemampuan administrasi, pengolahan data, inventori, marketplace, dan kompetensi pendukung di bidang logistik."
           />
 
           <div className="grid gap-6 lg:grid-cols-3">
@@ -319,7 +319,7 @@ export default function App() {
                 </div>
 
                 <h3 className="text-2xl font-bold text-[var(--text-title)]">
-                  Hard Skills
+                  Keterampilan Teknis
                 </h3>
               </div>
 
@@ -365,7 +365,7 @@ export default function App() {
                 </div>
 
                 <h3 className="text-2xl font-bold text-[var(--text-title)]">
-                  Soft Skills
+                  Keterampilan Interpersonal
                 </h3>
               </div>
 
@@ -411,13 +411,13 @@ export default function App() {
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
           <div>
             <p className="mb-2 text-sm font-semibold uppercase tracking-[0.25em] text-[var(--text-muted)]">
-              Contact
+              Kontak
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-[var(--contact-text)] md:text-4xl">
               Tertarik untuk bekerja sama?
             </h2>
             <p className="mt-4 max-w-xl leading-8 text-[var(--contact-muted)]">
-              Terbuka untuk peluang kerja di bidang administrasi inventory,
+              Terbuka untuk peluang kerja di bidang administrasi inventori,
               marketplace, gudang, operasional, dan logistik.
             </p>
           </div>

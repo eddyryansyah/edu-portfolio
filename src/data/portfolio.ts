@@ -33,7 +33,7 @@ const publicAsset = (filename: string) =>
 export const profile: Profile = {
   name: "Edward Yulyardi Suparno",
   initials: "EY",
-  title: "Admin Inventory & Admin Marketplace",
+  title: "Admin Inventori & Admin Marketplace",
   location: "Tarumajaya, Kab. Bekasi, Jawa Barat",
   phone: "088808936362",
   email: "edward.yulyardi@gmail.com",
@@ -42,13 +42,13 @@ export const profile: Profile = {
   cvUrl: publicAsset("edu-cv.pdf"),
   photoUrl: publicAsset("edu-profile.jpg"),
   summary:
-    "Lulusan S1 Manajemen Logistik dari Institut Transportasi dan Logistik Trisakti dengan IPK 3,66. Berpengalaman sebagai Admin Inventory dan Admin Marketplace, terutama dalam pengelolaan stok, administrasi barang, pemrosesan pesanan, pelayanan pelanggan, dan pengolahan data menggunakan Microsoft Excel.",
+    "Lulusan S1 Manajemen Logistik dari Institut Transportasi dan Logistik Trisakti dengan IPK 3,66. Berpengalaman sebagai Admin Inventori dan Admin Marketplace, terutama dalam pengelolaan stok, administrasi barang, pemrosesan pesanan, pelayanan pelanggan, dan pengolahan data menggunakan Microsoft Excel.",
 };
 
 export const experiences: Experience[] = [
   {
     company: "PT Ayyubi Berkah Nusantara",
-    role: "Admin Inventory",
+    role: "Admin Inventori",
     location: "Karawang, Indonesia",
     period: "Apr 2025 - Mei 2026",
     description:
@@ -58,7 +58,7 @@ export const experiences: Experience[] = [
       "Melakukan pengecekan data inventaris agar sesuai dengan kondisi barang.",
       "Membantu memastikan ketersediaan produk untuk kebutuhan operasional.",
       "Menyusun rekapitulasi dan laporan stok barang.",
-      "Mengolah data inventory menggunakan Microsoft Excel.",
+      "Mengolah data inventori menggunakan Microsoft Excel.",
     ],
     icon: "package",
   },
@@ -106,7 +106,7 @@ export const skills: string[] = [
   "HLOOKUP",
   "IF Formula",
   "Pivot Table",
-  "Administrasi Inventory",
+  "Administrasi Inventori",
   "Pencatatan Stok",
   "Pengolahan Data",
   "Pelayanan Pelanggan",

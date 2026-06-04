@@ -10,7 +10,7 @@ export function SplashScreen() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.7, ease: smoothEase }}
       role="status"
-      aria-label="Loading page"
+      aria-label="Memuat halaman"
     >
       <motion.h1
         className="px-6 text-center text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl"

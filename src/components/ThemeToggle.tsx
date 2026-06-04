@@ -44,9 +44,9 @@ export function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
     <button
       type="button"
       onClick={onToggle}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap"}
       aria-pressed={!isDark}
-      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      title={isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap"}
       className={`relative h-11 w-[5.25rem] flex-none rounded-full transition duration-300 ${
         isDark
           ? "bg-slate-800/90 shadow-inner shadow-black/30"

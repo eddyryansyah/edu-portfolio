@@ -7,7 +7,7 @@ describe("ThemeToggle", () => {
     render(<ThemeToggle theme="dark" onToggle={vi.fn()} />);
 
     const toggleButton = screen.getByRole("button", {
-      name: /switch to light mode/i,
+      name: /ganti ke mode terang/i,
     });
 
     expect(toggleButton).toBeInTheDocument();
@@ -18,7 +18,7 @@ describe("ThemeToggle", () => {
     render(<ThemeToggle theme="light" onToggle={vi.fn()} />);
 
     const toggleButton = screen.getByRole("button", {
-      name: /switch to dark mode/i,
+      name: /ganti ke mode gelap/i,
     });
 
     expect(toggleButton).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe("ThemeToggle", () => {
 
     fireEvent.click(
       screen.getByRole("button", {
-        name: /switch to light mode/i,
+        name: /ganti ke mode terang/i,
       }),
     );
 

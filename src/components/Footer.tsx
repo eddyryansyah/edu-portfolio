@@ -9,12 +9,12 @@ export function Footer() {
             Edward Portfolio
           </p>
           <p className="mt-1 text-sm text-[var(--footer-muted)]">
-            Built by Eddy Ryansyah as a modern frontend portfolio project.
+            Dibuat oleh Eddy Ryansyah sebagai proyek portofolio frontend modern.
           </p>
         </div>
 
         <div className="flex flex-col gap-2 text-sm text-[var(--footer-muted)] md:items-end">
-          <p>© {currentYear} Eddy Ryansyah. All rights reserved.</p>
+          <p>© {currentYear} Eddy Ryansyah. Seluruh hak cipta dilindungi.</p>
 
           <a
             href="https://github.com/eddyryansyah/edu-portfolio"
@@ -22,7 +22,7 @@ export function Footer() {
             rel="noreferrer"
             className="font-medium text-[var(--footer-link)] transition hover:text-[var(--footer-link-hover)]"
           >
-            Official Repository
+            Repositori Resmi
           </a>
         </div>
       </div>

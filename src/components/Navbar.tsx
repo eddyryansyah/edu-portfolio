@@ -11,12 +11,12 @@ type NavbarProps = {
 };
 
 const navItems = [
-  { label: "Home", href: "home" },
-  { label: "Experience", href: "experience" },
-  { label: "Education", href: "education" },
-  { label: "Organization", href: "organization" },
-  { label: "Skills", href: "skills" },
-  { label: "Contact", href: "contact" },
+  { label: "Beranda", href: "home" },
+  { label: "Pengalaman", href: "experience" },
+  { label: "Pendidikan", href: "education" },
+  { label: "Organisasi", href: "organization" },
+  { label: "Keterampilan", href: "skills" },
+  { label: "Kontak", href: "contact" },
 ];
 
 const DESKTOP_NAVBAR_OFFSET = 120;
@@ -117,7 +117,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
             type="button"
             onClick={() => handleNavigate("home")}
             className="flex min-w-0 items-center gap-3 text-left"
-            aria-label="Go to home section"
+            aria-label="Menuju bagian beranda"
           >
             <div className="flex h-10 w-10 flex-none items-center justify-center rounded-2xl bg-[var(--nav-logo-bg)] text-sm font-bold text-[var(--nav-logo-text)]">
               {profile.initials}
@@ -128,7 +128,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
                 Edward Portfolio
               </p>
               <p className="truncate text-xs text-[var(--nav-subtitle)]">
-                Professional Profile
+                Profil Profesional
               </p>
             </div>
           </button>
@@ -164,7 +164,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
           <button
             type="button"
             className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--text-title)] shadow-sm transition hover:bg-[var(--surface-soft)] md:hidden"
-            aria-label="Toggle navigation menu"
+            aria-label="Buka atau tutup menu navigasi"
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
             onClick={() => setIsOpen((current) => !current)}
@@ -256,10 +256,10 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
                 <div className="mt-2 flex items-center justify-between rounded-2xl bg-[var(--surface-soft)] px-4 py-3">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
-                      Appearance
+                      Tampilan
                     </p>
                     <p className="mt-1 text-sm font-semibold text-[var(--text-title)]">
-                      {theme === "dark" ? "Dark Mode" : "Light Mode"}
+                      {theme === "dark" ? "Mode Gelap" : "Mode Terang"}
                     </p>
                   </div>
 

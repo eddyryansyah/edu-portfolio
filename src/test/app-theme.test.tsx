@@ -29,7 +29,7 @@ describe("App theme integration", () => {
 
     expect(window.localStorage.getItem("theme")).toBe("dark");
     expect(
-      screen.getByRole("button", { name: /switch to light mode/i }),
+      screen.getByRole("button", { name: /ganti ke mode terang/i }),
     ).toBeInTheDocument();
   });
 
@@ -44,7 +44,7 @@ describe("App theme integration", () => {
 
     expect(window.localStorage.getItem("theme")).toBe("light");
     expect(
-      screen.getByRole("button", { name: /switch to dark mode/i }),
+      screen.getByRole("button", { name: /ganti ke mode gelap/i }),
     ).toBeInTheDocument();
   });
 
@@ -52,7 +52,7 @@ describe("App theme integration", () => {
     render(<App />);
 
     fireEvent.click(
-      screen.getByRole("button", { name: /switch to light mode/i }),
+      screen.getByRole("button", { name: /ganti ke mode terang/i }),
     );
 
     await waitFor(() => {
@@ -61,7 +61,7 @@ describe("App theme integration", () => {
 
     expect(window.localStorage.getItem("theme")).toBe("light");
     expect(
-      screen.getByRole("button", { name: /switch to dark mode/i }),
+      screen.getByRole("button", { name: /ganti ke mode gelap/i }),
     ).toBeInTheDocument();
   });
 });

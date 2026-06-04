@@ -43,27 +43,29 @@ describe("Navbar", () => {
     render(<Navbar theme="dark" onToggleTheme={vi.fn()} />);
 
     expect(screen.getByText("Edward Portfolio")).toBeInTheDocument();
-    expect(screen.getByText("Professional Profile")).toBeInTheDocument();
+    expect(screen.getByText("Profil Profesional")).toBeInTheDocument();
 
-    expect(screen.getByRole("button", { name: "Home" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Beranda" })).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "Experience" }),
+      screen.getByRole("button", { name: "Pengalaman" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "Education" }),
+      screen.getByRole("button", { name: "Pendidikan" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "Organization" }),
+      screen.getByRole("button", { name: "Organisasi" }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Skills" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Contact" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Keterampilan" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Kontak" })).toBeInTheDocument();
   });
 
   it("opens mobile navigation menu when toggle button is clicked", () => {
     render(<Navbar theme="dark" onToggleTheme={vi.fn()} />);
 
     const menuButton = screen.getByRole("button", {
-      name: /toggle navigation menu/i,
+      name: /buka atau tutup menu navigasi/i,
     });
 
     expect(menuButton).toHaveAttribute("aria-expanded", "false");
@@ -71,8 +73,8 @@ describe("Navbar", () => {
     fireEvent.click(menuButton);
 
     expect(menuButton).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getByText("Appearance")).toBeInTheDocument();
-    expect(screen.getByText("Dark Mode")).toBeInTheDocument();
+    expect(screen.getByText("Tampilan")).toBeInTheDocument();
+    expect(screen.getByText("Mode Gelap")).toBeInTheDocument();
   });
 
   it("calls theme toggle handler from navbar", () => {
@@ -81,7 +83,7 @@ describe("Navbar", () => {
     render(<Navbar theme="dark" onToggleTheme={onToggleTheme} />);
 
     const themeButton = screen.getByRole("button", {
-      name: /switch to light mode/i,
+      name: /ganti ke mode terang/i,
     });
 
     fireEvent.click(themeButton);
@@ -94,7 +96,7 @@ describe("Navbar", () => {
 
     render(<Navbar theme="dark" onToggleTheme={vi.fn()} />);
 
-    fireEvent.click(screen.getByRole("button", { name: "Skills" }));
+    fireEvent.click(screen.getByRole("button", { name: "Keterampilan" }));
 
     expect(window.scrollTo).toHaveBeenCalledWith({
       top: 780,

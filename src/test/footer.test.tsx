@@ -9,11 +9,11 @@ describe("Footer", () => {
     expect(screen.getByText("Edward Portfolio")).toBeInTheDocument();
     expect(
       screen.getByText(
-        "Built by Eddy Ryansyah as a modern frontend portfolio project.",
+        "Dibuat oleh Eddy Ryansyah sebagai proyek portofolio frontend modern.",
       ),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Eddy Ryansyah. All rights reserved./i),
+      screen.getByText(/Eddy Ryansyah. Seluruh hak cipta dilindungi./i),
     ).toBeInTheDocument();
   });
 
@@ -21,7 +21,7 @@ describe("Footer", () => {
     render(<Footer />);
 
     const repositoryLink = screen.getByRole("link", {
-      name: /official repository/i,
+      name: /repositori resmi/i,
     });
 
     expect(repositoryLink).toHaveAttribute(
