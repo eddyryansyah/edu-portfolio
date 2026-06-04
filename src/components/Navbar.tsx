@@ -110,13 +110,13 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
       <motion.nav
         layout
         transition={{ duration: 0.32, ease: smoothEase }}
-        className="overflow-hidden rounded-[1.75rem] border border-[var(--nav-border)] bg-[var(--nav-bg)] px-3 py-3 shadow-xl shadow-slate-950/10 backdrop-blur-xl sm:px-4"
+        className="overflow-visible rounded-[1.75rem] border border-[var(--nav-border)] bg-[var(--nav-bg)] px-4 py-3 shadow-xl shadow-slate-950/10 backdrop-blur-xl xl:px-5"
       >
-        <div className="flex items-center justify-between">
+        <div className="relative flex items-center justify-between">
           <button
             type="button"
             onClick={() => handleNavigate("home")}
-            className="flex min-w-0 items-center gap-3 text-left"
+            className="flex min-w-0 cursor-pointer items-center gap-3 text-left"
             aria-label="Menuju bagian beranda"
           >
             <div className="flex h-10 w-10 flex-none items-center justify-center rounded-2xl bg-[var(--nav-logo-bg)] text-sm font-bold text-[var(--nav-logo-text)]">
@@ -133,37 +133,35 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
             </div>
           </button>
 
-          <div className="hidden items-center gap-3 md:flex">
-            <div className="flex items-center gap-1">
-              {navItems.map((item) => {
-                const isActive = activeSection === item.href;
+          <div className="absolute left-[52.5%] hidden -translate-x-1/2 items-center justify-center gap-1 xl:flex 2xl:left-[52%]">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href;
 
-                return (
-                  <button
-                    key={item.href}
-                    type="button"
-                    onClick={() => handleNavigate(item.href)}
-                    aria-current={isActive ? "page" : undefined}
-                    className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                      isActive
-                        ? "bg-[var(--nav-active-bg)] text-[var(--nav-active-text)] shadow-sm"
-                        : "text-[var(--nav-link)] hover:bg-[var(--nav-hover-bg)] hover:text-[var(--nav-hover-text)]"
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                );
-              })}
-            </div>
+              return (
+                <button
+                  key={item.href}
+                  type="button"
+                  onClick={() => handleNavigate(item.href)}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`cursor-pointer whitespace-nowrap rounded-full px-3.5 py-2.5 text-sm font-semibold transition 2xl:px-4 ${
+                    isActive
+                      ? "bg-[var(--nav-active-bg)] text-[var(--nav-active-text)] shadow-sm"
+                      : "text-[var(--nav-link)] hover:bg-[var(--nav-hover-bg)] hover:text-[var(--nav-hover-text)]"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
 
-            <div className="h-8 w-px bg-[var(--border)]" aria-hidden="true" />
-
+          <div className="hidden flex-none xl:flex">
             <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           </div>
 
           <button
             type="button"
-            className="inline-flex h-11 w-11 flex-none items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--text-title)] shadow-sm transition hover:bg-[var(--surface-soft)] md:hidden"
+            className="inline-flex h-11 w-11 flex-none cursor-pointer items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--text-title)] shadow-sm transition hover:bg-[var(--surface-soft)] xl:hidden"
             aria-label="Buka atau tutup menu navigasi"
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
@@ -224,7 +222,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.32, ease: smoothEase }}
-              className="overflow-hidden md:hidden"
+              className="overflow-hidden xl:hidden"
             >
               <motion.div
                 initial={{ y: -4, filter: "blur(4px)" }}
@@ -242,7 +240,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
                       type="button"
                       onClick={() => handleNavigate(item.href)}
                       aria-current={isActive ? "page" : undefined}
-                      className={`rounded-2xl px-4 py-3 text-left text-sm font-semibold transition ${
+                      className={`cursor-pointer whitespace-nowrap rounded-2xl px-4 py-3 text-left text-sm font-semibold transition ${
                         isActive
                           ? "bg-[var(--nav-active-bg)] text-[var(--nav-active-text)]"
                           : "text-[var(--nav-link)] hover:bg-[var(--nav-hover-bg)] hover:text-[var(--nav-hover-text)]"

@@ -39,15 +39,15 @@ function MoonIcon() {
 
 export function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
   const isDark = theme === "dark";
+  const toggleLabel = isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap";
 
   return (
     <button
       type="button"
       onClick={onToggle}
-      aria-label={isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap"}
+      aria-label={toggleLabel}
       aria-pressed={!isDark}
-      title={isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap"}
-      className={`relative h-11 w-[5.25rem] flex-none rounded-full transition duration-300 ${
+      className={`group relative h-11 w-[5.25rem] flex-none cursor-pointer rounded-full transition duration-300 ${
         isDark
           ? "bg-slate-800/90 shadow-inner shadow-black/30"
           : "bg-slate-200 shadow-inner shadow-slate-300/70"
@@ -56,14 +56,14 @@ export function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
       <span
         className={`absolute left-1 top-1 h-9 w-9 rounded-full transition-transform duration-300 ease-out ${
           isDark
-            ? "translate-x-0 bg-black shadow-lg shadow-black/30"
-            : "translate-x-10 bg-white shadow-lg shadow-slate-400/40"
+            ? "translate-x-0 bg-white shadow-lg shadow-black/30"
+            : "translate-x-10 bg-slate-950 shadow-lg shadow-slate-400/40"
         }`}
       />
 
       <span
         className={`absolute left-1 top-1 z-10 flex h-9 w-9 items-center justify-center rounded-full transition-colors duration-300 ${
-          isDark ? "text-white" : "text-slate-500"
+          isDark ? "text-slate-950" : "text-slate-500"
         }`}
       >
         <MoonIcon />
@@ -71,10 +71,17 @@ export function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
 
       <span
         className={`absolute right-1 top-1 z-10 flex h-9 w-9 items-center justify-center rounded-full transition-colors duration-300 ${
-          isDark ? "text-slate-300" : "text-slate-950"
+          isDark ? "text-slate-300" : "text-white"
         }`}
       >
         <SunIcon />
+      </span>
+
+      <span
+        className="pointer-events-none absolute left-1/2 top-full z-[9999] mt-2 hidden -translate-x-1/2 whitespace-nowrap rounded-xl bg-slate-700/75 px-3 py-2 text-xs font-semibold text-white opacity-0 shadow-xl shadow-slate-950/20 backdrop-blur transition duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 xl:block"
+        aria-hidden="true"
+      >
+        {toggleLabel}
       </span>
     </button>
   );
