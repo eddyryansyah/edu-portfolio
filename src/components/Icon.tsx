@@ -42,19 +42,11 @@ function getIconPath(name: IconName): ReactNode {
 
     case "linkedin":
       return (
-        <>
-          <circle cx="6.3" cy="6.4" r="1.7" fill="currentColor" stroke="none" />
-          <path
-            d="M4.7 10H7.9V18.5H4.7V10Z"
-            fill="currentColor"
-            stroke="none"
-          />
-          <path
-            d="M10 10H13.1V11.2C13.55 10.45 14.55 9.75 16.15 9.75C19.2 9.75 20.1 11.75 20.1 14.35V18.5H16.9V14.75C16.9 13.75 16.85 12.55 15.45 12.55C14.05 12.55 13.25 13.55 13.25 14.65V18.5H10V10Z"
-            fill="currentColor"
-            stroke="none"
-          />
-        </>
+        <g transform="translate(0.9 0.55)">
+          <circle cx="5.2" cy="4.6" r="1.55" />
+          <rect x="3.7" y="7.1" width="3.1" height="9.7" rx="0.35" />
+          <path d="M10 16.8V7.1h3.05v1.4c.68-1 1.79-1.66 3.28-1.66c2.42 0 3.97 1.63 3.97 4.44v5.51h-3.1v-4.83c0-1.54-.66-2.42-1.95-2.42c-1.41 0-2.15.95-2.15 2.42v4.83H10Z" />
+        </g>
       );
 
     case "map":
