@@ -1,12 +1,12 @@
 # Edward Portfolio
 
-Edward Portfolio adalah website portofolio profesional berbasis React yang dibuat untuk menampilkan profil karier Edward Yulyardi Suparno, kakak dari penulis, sebagai Admin Inventory dan Admin Marketplace.
+Edward Portfolio adalah website portofolio profesional berbasis React yang dibuat untuk menampilkan profil karier Edward Yulyardi Suparno, kakak dari penulis, sebagai Admin Inventori dan Admin Marketplace.
 
-Project ini dikembangkan sebagai bagian dari portofolio frontend penulis untuk menunjukkan kemampuan dalam membangun website modern, responsif, terstruktur, dan siap deploy ke GitHub Pages.
+Proyek ini dikembangkan sebagai bagian dari portofolio frontend penulis untuk menunjukkan kemampuan dalam membangun website modern, responsif, terstruktur, dan siap deploy ke GitHub Pages.
 
 ## Live Demo
 
-Website akan tersedia melalui GitHub Pages:
+Website tersedia melalui GitHub Pages:
 
 ```text
 https://eddyryansyah.github.io/edu-portfolio
@@ -14,9 +14,9 @@ https://eddyryansyah.github.io/edu-portfolio
 
 ## Preview
 
-Website ini menampilkan beberapa section utama:
+Website ini menampilkan beberapa bagian utama:
 
-- Home / profil utama
+- Beranda / profil utama
 - Pengalaman kerja
 - Pendidikan
 - Pengalaman organisasi
@@ -39,28 +39,29 @@ Project ini dibuat menggunakan teknologi modern:
 
 ## Features
 
-- Responsive design untuk desktop dan mobile
+- Desain responsif untuk desktop dan mobile
 - Floating navbar dengan smooth scroll
-- Active navbar state sesuai section yang sedang dibuka
-- Mobile navigation dengan animasi halus
+- Active navbar state sesuai bagian yang sedang dibuka
+- Navigasi mobile dengan animasi halus
 - Theme toggle untuk mode terang dan gelap
 - Hero section dengan ambient background profesional
 - Splash screen minimalis dengan intro singkat
+- Antarmuka Bahasa Indonesia yang konsisten
 - Section portofolio yang terstruktur
 - Data portofolio dipisahkan ke file khusus
 - Fallback foto profil jika gambar gagal dimuat
-- Download CV dengan nama file formal
+- Unduh CV dengan nama file formal
 - Kontak WhatsApp langsung melalui link `wa.me`
-- SEO dan Open Graph metadata untuk preview link
-- Accessibility improvement untuk keyboard navigation dan screen reader
-- Footer profesional berisi copyright dan repository resmi
-- Unit test untuk data dan komponen UI utama
-- Siap deploy ke GitHub Pages
+- SEO dan Open Graph metadata dengan preview image PNG
+- Optimasi aksesibilitas untuk navigasi keyboard dan screen reader
+- Footer profesional berisi copyright dan repositori resmi
+- Unit test untuk data, komponen UI, dan integrasi dasar
+- Deployment otomatis ke GitHub Pages melalui GitHub Actions
 
 ## Project Structure
 
 ```text
-edu-portfolio/
+.
 ├── .github/
 │   ├── workflows/
 │   │   └── deploy.yml
@@ -162,6 +163,7 @@ Deployment dilakukan melalui GitHub Actions agar proses build berjalan otomatis 
 
 Beberapa pengembangan yang dapat dilakukan ke depannya:
 
+- Menambahkan dukungan pilihan Bahasa Indonesia dan Bahasa Inggris secara penuh agar portofolio dapat digunakan untuk kebutuhan lokal maupun internasional.
 - Menambahkan preview sertifikat dalam bentuk modal agar pengguna dapat melihat bukti sertifikasi tanpa meninggalkan halaman.
 - Menambahkan file sertifikat resmi pada folder khusus agar data sertifikasi lebih terdokumentasi.
 - Menambahkan animasi transisi lanjutan pada certificate preview modal.
