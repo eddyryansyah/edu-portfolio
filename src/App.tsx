@@ -103,7 +103,7 @@ export default function App() {
               <a
                 href="#contact"
                 aria-label="Hubungi Edward Yulyardi Suparno"
-                className="inline-flex w-full items-center justify-center rounded-2xl bg-[var(--hero-primary-button-bg)] px-6 py-3 text-sm font-bold text-[var(--hero-primary-button-text)] transition hover:opacity-90 sm:w-auto"
+                className="inline-flex w-full cursor-pointer items-center justify-center rounded-2xl bg-[var(--hero-primary-button-bg)] px-6 py-3 text-sm font-bold text-[var(--hero-primary-button-text)] shadow-sm transition hover:-translate-y-0.5 hover:opacity-90 hover:shadow-md active:translate-y-0 sm:w-auto"
               >
                 Hubungi Saya
                 <Icon name="external" className="ml-2 h-4 w-4" size={16} />
@@ -113,7 +113,7 @@ export default function App() {
                 href={profile.cvUrl}
                 download="CV Edward Yulyardi Suparno.pdf"
                 aria-label="Unduh CV Edward Yulyardi Suparno"
-                className="inline-flex w-full items-center justify-center rounded-2xl border border-[var(--hero-secondary-button-border)] bg-transparent px-6 py-3 text-sm font-bold text-[var(--hero-secondary-button-text)] transition hover:bg-[var(--hero-secondary-button-hover)] sm:w-auto"
+                className="inline-flex w-full cursor-pointer items-center justify-center rounded-2xl border border-[var(--hero-secondary-button-border)] bg-transparent px-6 py-3 text-sm font-bold text-[var(--hero-secondary-button-text)] shadow-sm transition hover:-translate-y-0.5 hover:bg-[var(--hero-secondary-button-hover)] hover:shadow-md active:translate-y-0 sm:w-auto"
               >
                 Unduh CV
                 <Icon name="download" className="ml-2 h-4 w-4" size={16} />
@@ -186,11 +186,10 @@ export default function App() {
         />
 
         <div className="grid gap-6">
-          {experiences.map((experience, index) => (
+          {experiences.map((experience) => (
             <ExperienceCard
               key={`${experience.company}-${experience.role}`}
               experience={experience}
-              index={index}
             />
           ))}
         </div>
@@ -365,7 +364,7 @@ export default function App() {
                 </div>
 
                 <h3 className="text-2xl font-bold text-[var(--text-title)]">
-                  Keterampilan Interpersonal
+                  Keterampilan Nonteknis
                 </h3>
               </div>
 

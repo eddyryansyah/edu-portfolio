@@ -8,8 +8,18 @@ type ContactItemProps = {
 };
 
 export function ContactItem({ icon, label, value, href }: ContactItemProps) {
+  const isClickable = Boolean(href);
+  const isExternal = href?.startsWith("http");
+
+  const contentClassName = [
+    "flex w-full min-w-0 items-center gap-3 rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 shadow-sm transition",
+    isClickable ? "hover:-translate-y-0.5 hover:shadow-md" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   const content = (
-    <div className="flex w-full min-w-0 items-center gap-3 rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+    <div className={contentClassName}>
       <div className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-slate-950 text-white">
         <Icon name={icon} size={18} />
       </div>
@@ -29,14 +39,12 @@ export function ContactItem({ icon, label, value, href }: ContactItemProps) {
     return content;
   }
 
-  const isExternal = href.startsWith("http");
-
   return (
     <a
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noreferrer" : undefined}
-      className="block w-full min-w-0"
+      className="block w-full min-w-0 cursor-pointer"
     >
       {content}
     </a>
