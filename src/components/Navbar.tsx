@@ -6,6 +6,7 @@ import { useActiveSection } from "../hooks/useActiveSection";
 import type { Theme } from "../types/theme";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { NavbarBrand } from "./NavbarBrand";
+import { NavbarLinks } from "./NavbarLinks";
 import { ThemeToggle } from "./ThemeToggle";
 
 type NavbarProps = {
@@ -60,25 +61,12 @@ export function Navbar({
           />
 
           <div className="absolute left-[52.5%] hidden -translate-x-1/2 items-center justify-center gap-1 xl:flex 2xl:left-[52%]">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.href;
-
-              return (
-                <button
-                  key={item.href}
-                  type="button"
-                  onClick={() => handleNavigate(item.href)}
-                  aria-current={isActive ? "page" : undefined}
-                  className={`cursor-pointer whitespace-nowrap rounded-full px-3.5 py-2.5 text-sm font-semibold transition 2xl:px-4 ${
-                    isActive
-                      ? "bg-[var(--nav-active-bg)] text-[var(--nav-active-text)] shadow-sm"
-                      : "text-[var(--nav-link)] hover:bg-[var(--nav-hover-bg)] hover:text-[var(--nav-hover-text)]"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
+            <NavbarLinks
+              items={navItems}
+              activeSection={activeSection}
+              onNavigate={handleNavigate}
+              variant="desktop"
+            />
           </div>
 
           <div className="hidden flex-none items-center gap-3 xl:flex">
@@ -166,25 +154,12 @@ export function Navbar({
                 transition={{ duration: 0.26, ease: smoothEase }}
                 className="mt-3 grid gap-1 border-t border-[var(--border)] pt-3"
               >
-                {navItems.map((item) => {
-                  const isActive = activeSection === item.href;
-
-                  return (
-                    <button
-                      key={item.href}
-                      type="button"
-                      onClick={() => handleNavigate(item.href)}
-                      aria-current={isActive ? "page" : undefined}
-                      className={`cursor-pointer whitespace-nowrap rounded-2xl px-4 py-3 text-left text-sm font-semibold transition ${
-                        isActive
-                          ? "bg-[var(--nav-active-bg)] text-[var(--nav-active-text)]"
-                          : "text-[var(--nav-link)] hover:bg-[var(--nav-hover-bg)] hover:text-[var(--nav-hover-text)]"
-                      }`}
-                    >
-                      {item.label}
-                    </button>
-                  );
-                })}
+                <NavbarLinks
+                  items={navItems}
+                  activeSection={activeSection}
+                  onNavigate={handleNavigate}
+                  variant="mobile"
+                />
 
                 <div className="mt-2 flex items-center justify-between rounded-2xl bg-[var(--surface-soft)] px-4 py-3">
                   <div>
