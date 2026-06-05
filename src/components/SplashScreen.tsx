@@ -1,24 +1,29 @@
 import { motion } from "framer-motion";
 
-const smoothEase = [0.22, 1, 0.36, 1] as const;
+import { smoothEase } from "../constants/animation";
+import type { SplashCopy } from "../data/i18n";
 
-export function SplashScreen() {
+type SplashScreenProps = {
+  copy: SplashCopy;
+};
+
+export function SplashScreen({ copy }: SplashScreenProps) {
   return (
     <motion.div
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950 text-white"
+      role="status"
+      aria-label={copy.ariaLabel}
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.7, ease: smoothEase }}
-      role="status"
-      aria-label="Memuat halaman"
+      transition={{ duration: 0.45, ease: "easeOut" }}
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950 text-white"
     >
       <motion.h1
-        className="px-6 text-center text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl"
         initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.9, ease: smoothEase }}
+        transition={{ duration: 0.75, ease: smoothEase }}
+        className="px-6 text-center text-5xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl"
       >
-        Kenalkan, Edward.
+        {copy.intro}
       </motion.h1>
     </motion.div>
   );

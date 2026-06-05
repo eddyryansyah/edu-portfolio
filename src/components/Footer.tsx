@@ -1,28 +1,40 @@
+import { SITE } from "../constants/site";
+import type { Language } from "../data/i18n";
+import { uiCopy } from "../data/i18n";
+
 const currentYear = new Date().getFullYear();
 
-export function Footer() {
+type FooterProps = {
+  language: Language;
+};
+
+export function Footer({ language }: FooterProps) {
+  const copy = uiCopy[language].footer;
+
   return (
     <footer className="border-t border-[var(--footer-border)] bg-[var(--footer-bg)] px-6 py-8 text-[var(--footer-text)] transition-colors duration-300">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-sm font-semibold text-[var(--footer-text)]">
-            Edward Portfolio
+            {SITE.name}
           </p>
           <p className="mt-1 text-sm text-[var(--footer-muted)]">
-            Dibuat oleh Eddy Ryansyah sebagai proyek portofolio frontend modern.
+            {copy.description}
           </p>
         </div>
 
         <div className="flex flex-col gap-2 text-sm text-[var(--footer-muted)] md:items-end">
-          <p>© {currentYear} Eddy Ryansyah. Seluruh hak cipta dilindungi.</p>
+          <p>
+            © {currentYear} Eddy Ryansyah. {copy.rights}
+          </p>
 
           <a
-            href="https://github.com/eddyryansyah/edu-portfolio"
+            href={SITE.repositoryUrl}
             target="_blank"
             rel="noreferrer"
-            className="font-medium text-[var(--footer-link)] transition hover:text-[var(--footer-link-hover)]"
+            className="font-medium text-[var(--footer-link)] underline decoration-transparent underline-offset-4 transition hover:text-[var(--footer-link-hover)] hover:decoration-current focus-visible:decoration-current"
           >
-            Repositori Resmi
+            {copy.repository}
           </a>
         </div>
       </div>

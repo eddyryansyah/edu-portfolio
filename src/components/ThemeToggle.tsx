@@ -1,8 +1,14 @@
-type Theme = "dark" | "light";
+import type { Theme } from "../types/theme";
+
+type ThemeToggleLabels = {
+  toLight: string;
+  toDark: string;
+};
 
 type ThemeToggleProps = {
   theme: Theme;
   onToggle: () => void;
+  labels?: ThemeToggleLabels;
 };
 
 function SunIcon() {
@@ -37,9 +43,11 @@ function MoonIcon() {
   );
 }
 
-export function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
+export function ThemeToggle({ theme, onToggle, labels }: ThemeToggleProps) {
   const isDark = theme === "dark";
-  const toggleLabel = isDark ? "Ganti ke mode terang" : "Ganti ke mode gelap";
+  const toggleLabel = isDark
+    ? (labels?.toLight ?? "Ganti ke mode terang")
+    : (labels?.toDark ?? "Ganti ke mode gelap");
 
   return (
     <button

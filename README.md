@@ -2,7 +2,7 @@
 
 Edward Portfolio adalah website portofolio profesional berbasis React yang dibuat untuk menampilkan profil karier Edward Yulyardi Suparno, kakak dari penulis, sebagai Admin Inventori dan Admin Marketplace.
 
-Proyek ini dikembangkan sebagai bagian dari portofolio frontend penulis untuk menunjukkan kemampuan dalam membangun website modern, responsif, terstruktur, dan siap deploy ke GitHub Pages.
+Project ini dikembangkan sebagai bagian dari portofolio frontend penulis untuk menunjukkan kemampuan dalam membangun website modern, responsif, terstruktur, accessible, memiliki dukungan multi-bahasa, serta siap deploy ke GitHub Pages.
 
 ## Live Demo
 
@@ -14,9 +14,9 @@ https://eddyryansyah.github.io/edu-portfolio
 
 ## Preview
 
-Website ini menampilkan beberapa bagian utama:
+Website ini menampilkan beberapa section utama:
 
-- Beranda / profil utama
+- Home / profil utama
 - Pengalaman kerja
 - Pendidikan
 - Pengalaman organisasi
@@ -39,24 +39,29 @@ Project ini dibuat menggunakan teknologi modern:
 
 ## Features
 
-- Desain responsif untuk desktop dan mobile
+- Responsive design untuk desktop dan mobile
 - Floating navbar dengan smooth scroll
-- Active navbar state sesuai bagian yang sedang dibuka
-- Navigasi mobile dengan animasi halus
+- Active navbar state sesuai section yang sedang dibuka
+- Mobile navigation dengan animasi halus
 - Theme toggle untuk mode terang dan gelap
+- Language dropdown untuk Bahasa Indonesia dan English
+- Localized portfolio content untuk tampilan ID/EN
+- Localized document metadata berdasarkan bahasa aktif
 - Hero section dengan ambient background profesional
 - Splash screen minimalis dengan intro singkat
-- Antarmuka Bahasa Indonesia yang konsisten
-- Section portofolio yang terstruktur
-- Data portofolio dipisahkan ke file khusus
+- Section portofolio yang dipisahkan ke folder khusus
+- Data portofolio dan copy UI terpusat
+- Custom hooks untuk theme, language, splash screen, metadata, dan active section
+- Centralized constants dan shared types
 - Fallback foto profil jika gambar gagal dimuat
-- Unduh CV dengan nama file formal
+- Download CV dengan nama file formal
 - Kontak WhatsApp langsung melalui link `wa.me`
-- SEO dan Open Graph metadata dengan preview image PNG
-- Optimasi aksesibilitas untuk navigasi keyboard dan screen reader
-- Footer profesional berisi copyright dan repositori resmi
-- Unit test untuk data, komponen UI, dan integrasi dasar
-- Deployment otomatis ke GitHub Pages melalui GitHub Actions
+- SEO dan Open Graph metadata untuk preview link
+- Accessibility improvement untuk keyboard navigation dan screen reader
+- Skip link untuk akses cepat ke konten utama
+- Footer profesional berisi copyright dan repository resmi
+- Unit test dan integration test untuk data, UI, theme, language, navbar, footer, dan komponen utama
+- Siap deploy ke GitHub Pages
 
 ## Project Structure
 
@@ -79,26 +84,61 @@ Project ini dibuat menggunakan teknologi modern:
 │   │   ├── Footer.tsx
 │   │   ├── HeroBackground.tsx
 │   │   ├── Icon.tsx
+│   │   ├── LanguageDropdown.tsx
 │   │   ├── Navbar.tsx
+│   │   ├── NavbarBrand.tsx
+│   │   ├── NavbarControls.tsx
+│   │   ├── NavbarLinks.tsx
+│   │   ├── NavbarMenuButton.tsx
+│   │   ├── NavbarMobileControlRow.tsx
+│   │   ├── NavbarMobileMenu.tsx
 │   │   ├── ProfilePhoto.tsx
 │   │   ├── SectionTitle.tsx
 │   │   ├── SkillPill.tsx
+│   │   ├── SkipLink.tsx
 │   │   ├── SplashScreen.tsx
 │   │   └── ThemeToggle.tsx
+│   ├── constants/
+│   │   ├── animation.ts
+│   │   ├── preferences.ts
+│   │   └── site.ts
 │   ├── data/
+│   │   ├── i18n.ts
 │   │   └── portfolio.ts
+│   ├── hooks/
+│   │   ├── index.ts
+│   │   ├── useActiveSection.ts
+│   │   ├── useDocumentMetadata.ts
+│   │   ├── useLanguagePreference.ts
+│   │   ├── useSplashScreen.ts
+│   │   └── useThemePreference.ts
+│   ├── sections/
+│   │   ├── ContactSection.tsx
+│   │   ├── EducationSection.tsx
+│   │   ├── ExperienceSection.tsx
+│   │   ├── HeroSection.tsx
+│   │   ├── index.ts
+│   │   ├── OrganizationSection.tsx
+│   │   └── SkillsSection.tsx
 │   ├── test/
 │   │   ├── app-contact.test.tsx
+│   │   ├── app-language.test.tsx
 │   │   ├── app-theme.test.tsx
 │   │   ├── footer.test.tsx
+│   │   ├── language-dropdown.test.tsx
 │   │   ├── navbar.test.tsx
 │   │   ├── portfolio.test.ts
 │   │   ├── setup.ts
 │   │   ├── splash-screen.test.tsx
 │   │   └── theme-toggle.test.tsx
+│   ├── types/
+│   │   ├── navigation.ts
+│   │   └── theme.ts
 │   ├── App.tsx
 │   ├── index.css
 │   └── main.tsx
+├── .gitignore
+├── eslint.config.js
 ├── index.html
 ├── LICENSE
 ├── package.json
@@ -112,38 +152,38 @@ Project ini dibuat menggunakan teknologi modern:
 
 ## Getting Started
 
-### Clone repository:
+### Clone repository
 
 ```bash
 git clone https://github.com/eddyryansyah/edu-portfolio.git
 cd edu-portfolio
 ```
 
-### Install dependencies:
+### Install dependencies
 
 ```bash
 npm install
 ```
 
-### Run development server:
+### Run development server
 
 ```bash
 npm run dev
 ```
 
-### Build production:
+### Build production
 
 ```bash
 npm run build
 ```
 
-### Run tests:
+### Run tests
 
 ```bash
 npm run test
 ```
 
-### Preview production build:
+### Preview production build
 
 ```bash
 npm run preview
@@ -159,15 +199,38 @@ base: "/edu-portfolio/";
 
 Deployment dilakukan melalui GitHub Actions agar proses build berjalan otomatis setiap kali ada perubahan pada branch utama.
 
+## Testing
+
+Project ini memiliki pengujian untuk memastikan fitur utama tetap aman ketika kode dikembangkan.
+
+Area yang diuji meliputi:
+
+- Data portofolio
+- Konten bilingual ID/EN
+- Theme toggle
+- Language dropdown
+- Navbar desktop dan mobile
+- Footer
+- Contact link
+- Splash screen
+- Integrasi language preference dengan `localStorage`
+- Metadata dokumen berdasarkan bahasa aktif
+
+Menjalankan seluruh test:
+
+```bash
+npm run test -- --run
+```
+
 ## Future Improvements
 
 Beberapa pengembangan yang dapat dilakukan ke depannya:
 
-- Menambahkan dukungan pilihan Bahasa Indonesia dan Bahasa Inggris secara penuh agar portofolio dapat digunakan untuk kebutuhan lokal maupun internasional.
 - Menambahkan preview sertifikat dalam bentuk modal agar pengguna dapat melihat bukti sertifikasi tanpa meninggalkan halaman.
 - Menambahkan file sertifikat resmi pada folder khusus agar data sertifikasi lebih terdokumentasi.
 - Menambahkan animasi transisi lanjutan pada certificate preview modal.
 - Menambahkan pengujian untuk fitur preview sertifikat ketika fitur tersebut sudah dibuat.
+- Menambahkan language refinement lanjutan jika konten profesional Edward Yulyardi Suparno diperbarui.
 - Menambahkan optimasi konten berdasarkan kebutuhan terbaru Edward Yulyardi Suparno.
 
 ## Author
@@ -179,7 +242,7 @@ GitHub: [@eddyryansyah](https://github.com/eddyryansyah)
 
 ## License
 
-Copyright (c) 2026 Eddy Ryansyah.  
+Copyright (c) 2026 Eddy Ryansyah.
 All rights reserved.
 
 This project is published for portfolio, educational, and demonstration purposes only. No part of this repository may be copied, modified, distributed, or reused without prior written permission from the author.

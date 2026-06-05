@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { Navbar } from "../components/Navbar";
 
@@ -20,9 +20,25 @@ const createSection = (id: string, top: number) => {
       toJSON: () => ({}),
     }) as DOMRect;
 
+  Object.defineProperty(section, "offsetTop", {
+    configurable: true,
+    value: top,
+  });
+
   document.body.appendChild(section);
 
   return section;
+};
+
+const renderNavbar = (props?: Partial<React.ComponentProps<typeof Navbar>>) => {
+  const defaultProps: React.ComponentProps<typeof Navbar> = {
+    theme: "dark",
+    language: "id",
+    onToggleTheme: vi.fn(),
+    onChangeLanguage: vi.fn(),
+  };
+
+  return render(<Navbar {...defaultProps} {...props} />);
 };
 
 describe("Navbar", () => {
@@ -39,8 +55,8 @@ describe("Navbar", () => {
     vi.restoreAllMocks();
   });
 
-  it("renders brand and navigation items", () => {
-    render(<Navbar theme="dark" onToggleTheme={vi.fn()} />);
+  it("renders brand and Indonesian navigation items", () => {
+    renderNavbar();
 
     expect(screen.getByText("Edward Portfolio")).toBeInTheDocument();
     expect(screen.getByText("Profil Profesional")).toBeInTheDocument();
@@ -61,8 +77,27 @@ describe("Navbar", () => {
     expect(screen.getByRole("button", { name: "Kontak" })).toBeInTheDocument();
   });
 
+  it("renders English navigation items when language is English", () => {
+    renderNavbar({ language: "en" });
+
+    expect(screen.getByText("Professional Profile")).toBeInTheDocument();
+
+    expect(screen.getByRole("button", { name: "Home" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Experience" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Education" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Organization" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Skills" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Contact" })).toBeInTheDocument();
+  });
+
   it("opens mobile navigation menu when toggle button is clicked", () => {
-    render(<Navbar theme="dark" onToggleTheme={vi.fn()} />);
+    renderNavbar();
 
     const menuButton = screen.getByRole("button", {
       name: /buka atau tutup menu navigasi/i,
@@ -73,14 +108,31 @@ describe("Navbar", () => {
     fireEvent.click(menuButton);
 
     expect(menuButton).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getByText("Tampilan")).toBeInTheDocument();
-    expect(screen.getByText("Mode Gelap")).toBeInTheDocument();
+
+    const mobileNavigation = document.getElementById("mobile-navigation");
+
+    expect(mobileNavigation).toBeInTheDocument();
+
+    const mobileMenu = within(mobileNavigation as HTMLElement);
+
+    expect(
+      mobileMenu.getByText("Tampilan", { selector: "p" }),
+    ).toBeInTheDocument();
+    expect(
+      mobileMenu.getByText("Mode Gelap", { selector: "p" }),
+    ).toBeInTheDocument();
+    expect(
+      mobileMenu.getByText("Bahasa", { selector: "p" }),
+    ).toBeInTheDocument();
+    expect(
+      mobileMenu.getByText("Bahasa Indonesia", { selector: "p" }),
+    ).toBeInTheDocument();
   });
 
   it("calls theme toggle handler from navbar", () => {
     const onToggleTheme = vi.fn();
 
-    render(<Navbar theme="dark" onToggleTheme={onToggleTheme} />);
+    renderNavbar({ onToggleTheme });
 
     const themeButton = screen.getByRole("button", {
       name: /ganti ke mode terang/i,
@@ -91,10 +143,25 @@ describe("Navbar", () => {
     expect(onToggleTheme).toHaveBeenCalledTimes(1);
   });
 
+  it("opens language dropdown and calls language change handler", () => {
+    const onChangeLanguage = vi.fn();
+
+    renderNavbar({ onChangeLanguage });
+
+    const languageButton = screen.getByRole("button", {
+      name: /pilih bahasa/i,
+    });
+
+    fireEvent.click(languageButton);
+    fireEvent.click(screen.getByRole("menuitemradio", { name: /english/i }));
+
+    expect(onChangeLanguage).toHaveBeenCalledWith("en");
+  });
+
   it("scrolls to the selected section and updates the URL hash", () => {
     createSection("skills", 900);
 
-    render(<Navbar theme="dark" onToggleTheme={vi.fn()} />);
+    renderNavbar();
 
     fireEvent.click(screen.getByRole("button", { name: "Keterampilan" }));
 
