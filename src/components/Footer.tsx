@@ -31,7 +31,7 @@ export function Footer({ language }: FooterProps) {
             href="https://github.com/eddyryansyah/edu-portfolio"
             target="_blank"
             rel="noreferrer"
-            className="font-medium text-[var(--footer-link)] transition hover:text-[var(--footer-link-hover)]"
+            className="font-medium text-[var(--footer-link)] underline decoration-transparent underline-offset-4 transition hover:text-[var(--footer-link-hover)] hover:decoration-current focus-visible:decoration-current"
           >
             {copy.repository}
           </a>
