@@ -1,9 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { Language, SectionId } from "../data/i18n";
-import type { Theme } from "../types/theme";
 import { languageOptions, sectionIds, uiCopy } from "../data/i18n";
 import { profile } from "../data/portfolio";
+import { useActiveSection } from "../hooks/useActiveSection";
+import type { Theme } from "../types/theme";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -14,13 +15,7 @@ type NavbarProps = {
   onChangeLanguage: (language: Language) => void;
 };
 
-const DESKTOP_NAVBAR_OFFSET = 120;
-const MOBILE_NAVBAR_OFFSET = 160;
-const BOTTOM_THRESHOLD = 32;
 const smoothEase = [0.22, 1, 0.36, 1] as const;
-
-const getNavbarOffset = () =>
-  window.innerWidth < 768 ? MOBILE_NAVBAR_OFFSET : DESKTOP_NAVBAR_OFFSET;
 
 export function Navbar({
   theme,
@@ -29,7 +24,7 @@ export function Navbar({
   onChangeLanguage,
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<SectionId>("home");
+  const { activeSection, navigateToSection } = useActiveSection(sectionIds);
 
   const copy = uiCopy[language];
 
@@ -38,78 +33,16 @@ export function Navbar({
     label: copy.nav[sectionId],
   }));
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const documentHeight = document.documentElement.scrollHeight;
-      const viewportHeight = window.innerHeight;
-      const maxScrollPosition = documentHeight - viewportHeight;
-      const isNearBottom =
-        window.scrollY >= maxScrollPosition - BOTTOM_THRESHOLD;
-
-      if (isNearBottom) {
-        setActiveSection(sectionIds[sectionIds.length - 1]);
-        return;
-      }
-
-      const navbarOffset = getNavbarOffset();
-      const scrollPosition = window.scrollY + navbarOffset + 1;
-      let currentSection: SectionId = "home";
-
-      for (const sectionId of sectionIds) {
-        const sectionElement = document.getElementById(sectionId);
-
-        if (!sectionElement) {
-          continue;
-        }
-
-        if (sectionElement.offsetTop <= scrollPosition) {
-          currentSection = sectionId;
-        }
-      }
-
-      setActiveSection(currentSection);
-    };
-
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, []);
-
   const handleNavigate = (targetId: SectionId) => {
-    const scrollToTarget = () => {
-      const targetElement = document.getElementById(targetId);
-
-      if (!targetElement) {
-        return;
-      }
-
-      const targetPosition =
-        targetElement.getBoundingClientRect().top +
-        window.scrollY -
-        getNavbarOffset();
-
-      window.scrollTo({
-        top: Math.max(targetPosition, 0),
-        behavior: "smooth",
-      });
-
-      window.history.pushState(null, "", `#${targetId}`);
-      setActiveSection(targetId);
-    };
+    const navigate = () => navigateToSection(targetId);
 
     if (isOpen) {
       setIsOpen(false);
-      window.setTimeout(scrollToTarget, 180);
+      window.setTimeout(navigate, 180);
       return;
     }
 
-    scrollToTarget();
+    navigate();
   };
 
   return (
