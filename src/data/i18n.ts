@@ -44,6 +44,11 @@ export const uiCopy = {
       skills: "Keterampilan",
       contact: "Kontak",
     },
+    metadata: {
+      title: "Edward Portfolio | Edward Yulyardi Suparno",
+      description:
+        "Website portofolio profesional Edward Yulyardi Suparno sebagai Admin Inventory dan Admin Marketplace, menampilkan pengalaman kerja, pendidikan, keterampilan, sertifikasi, dan kontak profesional.",
+    },
     navbar: {
       brandAriaLabel: "Menuju bagian beranda",
       profileLabel: "Profil Profesional",
@@ -146,6 +151,11 @@ export const uiCopy = {
       skills: "Skills",
       contact: "Contact",
     },
+    metadata: {
+      title: "Edward Portfolio | Edward Yulyardi Suparno",
+      description:
+        "Professional portfolio website for Edward Yulyardi Suparno as an Inventory Admin and Marketplace Admin, showcasing work experience, education, skills, certifications, and professional contact information.",
+    },
     navbar: {
       brandAriaLabel: "Go to home section",
       profileLabel: "Professional Profile",
@@ -244,6 +254,10 @@ export const uiCopy = {
   Language,
   {
     nav: Record<SectionId, string>;
+    metadata: {
+      title: string;
+      description: string;
+    };
     navbar: {
       brandAriaLabel: string;
       profileLabel: string;

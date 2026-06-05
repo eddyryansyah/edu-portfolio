@@ -14,6 +14,7 @@ import {
 import { uiCopy } from "./data/i18n";
 import { portfolioContent } from "./data/portfolio";
 import {
+  useDocumentMetadata,
   useLanguagePreference,
   useSplashScreen,
   useThemePreference,
@@ -27,6 +28,8 @@ export default function App() {
   const content = portfolioContent[language];
   const copy = uiCopy[language];
   const { profile } = content;
+
+  useDocumentMetadata(copy.metadata);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[var(--page-bg)] text-[var(--text-title)] transition-colors duration-300">
