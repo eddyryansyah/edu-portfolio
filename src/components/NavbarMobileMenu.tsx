@@ -8,6 +8,7 @@ import type { Theme } from "../types/theme";
 
 import { LanguageDropdown } from "./LanguageDropdown";
 import { NavbarLinks } from "./NavbarLinks";
+import { NavbarMobileControlRow } from "./NavbarMobileControlRow";
 import { ThemeToggle } from "./ThemeToggle";
 
 type NavbarMobileMenuProps = {
@@ -33,6 +34,9 @@ export function NavbarMobileMenu({
   onToggleTheme,
   onChangeLanguage,
 }: NavbarMobileMenuProps) {
+  const currentThemeLabel =
+    theme === "dark" ? copy.theme.currentDark : copy.theme.currentLight;
+
   return (
     <AnimatePresence initial={false}>
       {isOpen ? (
@@ -59,41 +63,27 @@ export function NavbarMobileMenu({
               variant="mobile"
             />
 
-            <div className="mt-2 flex items-center justify-between rounded-2xl bg-[var(--surface-soft)] px-4 py-3">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
-                  {copy.theme.label}
-                </p>
-                <p className="mt-1 text-sm font-semibold text-[var(--text-title)]">
-                  {theme === "dark"
-                    ? copy.theme.currentDark
-                    : copy.theme.currentLight}
-                </p>
-              </div>
-
+            <NavbarMobileControlRow
+              label={copy.theme.label}
+              value={currentThemeLabel}
+            >
               <ThemeToggle
                 theme={theme}
                 onToggle={onToggleTheme}
                 labels={copy.theme}
               />
-            </div>
+            </NavbarMobileControlRow>
 
-            <div className="mt-2 flex items-center justify-between rounded-2xl bg-[var(--surface-soft)] px-4 py-3">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
-                  {copy.language.label}
-                </p>
-                <p className="mt-1 text-sm font-semibold text-[var(--text-title)]">
-                  {languageOptions[language].label}
-                </p>
-              </div>
-
+            <NavbarMobileControlRow
+              label={copy.language.label}
+              value={languageOptions[language].label}
+            >
               <LanguageDropdown
                 language={language}
                 onChangeLanguage={onChangeLanguage}
                 placement="top"
               />
-            </div>
+            </NavbarMobileControlRow>
           </motion.div>
         </motion.div>
       ) : null}
