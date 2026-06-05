@@ -18,10 +18,14 @@ export function NavbarLinks({
     <>
       {items.map((item) => {
         const isActive = activeSection === item.href;
+
+        const baseStateClass =
+          "text-[var(--nav-link)] hover:bg-[var(--nav-hover-bg)] hover:text-[var(--nav-hover-text)]";
+
         const activeStateClass =
-          variant === "desktop" && isActive
+          variant === "desktop"
             ? "bg-[var(--nav-active-bg)] text-[var(--nav-active-text)] shadow-sm"
-            : "text-[var(--nav-link)] hover:bg-[var(--nav-hover-bg)] hover:text-[var(--nav-hover-text)]";
+            : "border-[var(--nav-active-text)] bg-[var(--nav-active-bg)] text-[var(--nav-active-text)] shadow-sm";
 
         return (
           <button
@@ -32,8 +36,14 @@ export function NavbarLinks({
             className={`cursor-pointer whitespace-nowrap text-sm font-semibold transition ${
               variant === "desktop"
                 ? "rounded-full px-3.5 py-2.5 2xl:px-4"
-                : "rounded-2xl px-4 py-3 text-left"
-            } ${activeStateClass}`}
+                : "rounded-2xl border-l-4 px-4 py-3 text-left"
+            } ${
+              isActive
+                ? activeStateClass
+                : variant === "mobile"
+                  ? `border-transparent ${baseStateClass}`
+                  : baseStateClass
+            }`}
           >
             {item.label}
           </button>
