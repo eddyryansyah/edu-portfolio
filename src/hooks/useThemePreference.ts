@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { STORAGE_KEYS } from "../constants/preferences";
 import type { Theme } from "../types/theme";
 
 const getInitialTheme = (): Theme => {
@@ -6,7 +7,7 @@ const getInitialTheme = (): Theme => {
     return "dark";
   }
 
-  const savedTheme = window.localStorage.getItem("theme");
+  const savedTheme = window.localStorage.getItem(STORAGE_KEYS.theme);
 
   return savedTheme === "light" ? "light" : "dark";
 };
@@ -16,7 +17,7 @@ export function useThemePreference() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem("theme", theme);
+    window.localStorage.setItem(STORAGE_KEYS.theme, theme);
   }, [theme]);
 
   const toggleTheme = () => {

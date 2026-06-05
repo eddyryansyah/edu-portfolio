@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { STORAGE_KEYS } from "../constants/preferences";
 import type { Language } from "../data/i18n";
 
 const getInitialLanguage = (): Language => {
@@ -6,7 +7,7 @@ const getInitialLanguage = (): Language => {
     return "id";
   }
 
-  const savedLanguage = window.localStorage.getItem("language");
+  const savedLanguage = window.localStorage.getItem(STORAGE_KEYS.language);
 
   return savedLanguage === "en" ? "en" : "id";
 };
@@ -16,7 +17,7 @@ export function useLanguagePreference() {
 
   useEffect(() => {
     document.documentElement.lang = language;
-    window.localStorage.setItem("language", language);
+    window.localStorage.setItem(STORAGE_KEYS.language, language);
   }, [language]);
 
   const changeLanguage = (selectedLanguage: Language) => {
