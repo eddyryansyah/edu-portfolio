@@ -3,16 +3,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { smoothEase } from "../constants/animation";
 import type { Language, SectionId, UiCopy } from "../data/i18n";
 import { languageOptions } from "../data/i18n";
+import type { NavbarItem } from "../types/navigation";
 import type { Theme } from "../types/theme";
 
 import { LanguageDropdown } from "./LanguageDropdown";
 import { NavbarLinks } from "./NavbarLinks";
 import { ThemeToggle } from "./ThemeToggle";
-
-type NavbarItem = {
-  href: SectionId;
-  label: string;
-};
 
 type NavbarMobileMenuProps = {
   isOpen: boolean;

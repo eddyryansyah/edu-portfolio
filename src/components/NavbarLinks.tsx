@@ -1,9 +1,5 @@
 import type { SectionId } from "../data/i18n";
-
-type NavbarItem = {
-  href: SectionId;
-  label: string;
-};
+import type { NavbarItem } from "../types/navigation";
 
 type NavbarLinksProps = {
   items: NavbarItem[];
