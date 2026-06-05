@@ -18,6 +18,10 @@ export function NavbarLinks({
     <>
       {items.map((item) => {
         const isActive = activeSection === item.href;
+        const activeStateClass =
+          variant === "desktop" && isActive
+            ? "bg-[var(--nav-active-bg)] text-[var(--nav-active-text)] shadow-sm"
+            : "text-[var(--nav-link)] hover:bg-[var(--nav-hover-bg)] hover:text-[var(--nav-hover-text)]";
 
         return (
           <button
@@ -29,11 +33,7 @@ export function NavbarLinks({
               variant === "desktop"
                 ? "rounded-full px-3.5 py-2.5 2xl:px-4"
                 : "rounded-2xl px-4 py-3 text-left"
-            } ${
-              isActive
-                ? "bg-[var(--nav-active-bg)] text-[var(--nav-active-text)] shadow-sm"
-                : "text-[var(--nav-link)] hover:bg-[var(--nav-hover-bg)] hover:text-[var(--nav-hover-text)]"
-            }`}
+            } ${activeStateClass}`}
           >
             {item.label}
           </button>

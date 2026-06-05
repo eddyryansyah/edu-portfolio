@@ -50,9 +50,9 @@ export function NavbarMobileMenu({
           className="overflow-hidden xl:hidden"
         >
           <motion.div
-            initial={{ y: -4, filter: "blur(4px)" }}
-            animate={{ y: 0, filter: "blur(0px)" }}
-            exit={{ y: -4, filter: "blur(4px)" }}
+            initial={{ y: -4 }}
+            animate={{ y: 0 }}
+            exit={{ y: -4 }}
             transition={{ duration: 0.26, ease: smoothEase }}
             className="mt-3 grid gap-1 border-t border-[var(--border)] pt-3"
           >
