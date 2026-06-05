@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { SplashScreen } from "./components/SplashScreen";
 import { Navbar } from "./components/Navbar";
 import { HeroBackground } from "./components/HeroBackground";
-import { BulletList } from "./components/BulletList";
 import { ContactItem } from "./components/ContactItem";
 import { Icon } from "./components/Icon";
 import { ProfilePhoto } from "./components/ProfilePhoto";
@@ -12,6 +11,7 @@ import { SkillPill } from "./components/SkillPill";
 import { Footer } from "./components/Footer";
 import { ExperienceSection } from "./sections/ExperienceSection";
 import { EducationSection } from "./sections/EducationSection";
+import { OrganizationSection } from "./sections/OrganizationSection";
 import type { Language } from "./data/i18n";
 import { uiCopy } from "./data/i18n";
 import { portfolioContent } from "./data/portfolio";
@@ -208,44 +208,10 @@ export default function App() {
         highSchoolHighlights={content.highSchoolHighlights}
       />
 
-      <section
-        id="organization"
-        className="mx-auto max-w-6xl scroll-mt-28 px-6 py-16 md:py-20"
-      >
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
-            <SectionTitle
-              eyebrow={copy.sections.organization.eyebrow}
-              title={copy.sections.organization.title}
-              description={copy.sections.organization.description}
-            />
-          </div>
-
-          <article className="rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-6 shadow-sm md:p-8">
-            <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-[var(--icon-bg)] text-[var(--icon-text)]">
-                <Icon name="users" size={24} />
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-[var(--text-title)]">
-                  {copy.sections.organization.organizationName}
-                </h3>
-                <p className="mt-1 text-sm font-semibold text-[var(--text-muted)]">
-                  {copy.sections.organization.organizationRole}
-                </p>
-                <p className="mt-3 leading-7 text-[var(--text-body)]">
-                  {copy.sections.organization.organizationDescription}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6">
-              <BulletList items={content.organizationPoints} />
-            </div>
-          </article>
-        </div>
-      </section>
+      <OrganizationSection
+        copy={copy.sections.organization}
+        organizationPoints={content.organizationPoints}
+      />
 
       <section
         id="skills"
