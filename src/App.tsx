@@ -2,6 +2,7 @@ import { AnimatePresence } from "framer-motion";
 import { SplashScreen } from "./components/SplashScreen";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { SkipLink } from "./components/SkipLink";
 import { HeroSection } from "./sections/HeroSection";
 import { ExperienceSection } from "./sections/ExperienceSection";
 import { EducationSection } from "./sections/EducationSection";
@@ -29,12 +30,7 @@ export default function App() {
         {isLoading ? <SplashScreen /> : null}
       </AnimatePresence>
 
-      <a
-        href="#home"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-1/2 focus:top-24 focus:z-[9999] focus:-translate-x-1/2 focus:rounded-2xl focus:border focus:border-[var(--nav-active-bg)] focus:bg-[var(--nav-active-bg)] focus:px-4 focus:py-2.5 focus:text-sm focus:font-bold focus:text-[var(--nav-active-text)] focus:shadow-xl focus:shadow-slate-950/20"
-      >
-        {copy.accessibility.skipToMain}
-      </a>
+      <SkipLink href="#home">{copy.accessibility.skipToMain}</SkipLink>
 
       <Navbar
         theme={theme}
