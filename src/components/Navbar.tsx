@@ -1,23 +1,19 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import type { Language, SectionId } from "../data/i18n";
+import { languageOptions, sectionIds, uiCopy } from "../data/i18n";
 import { profile } from "../data/portfolio";
+import { LanguageDropdown } from "./LanguageDropdown";
 import { ThemeToggle } from "./ThemeToggle";
 
 type Theme = "dark" | "light";
 
 type NavbarProps = {
   theme: Theme;
+  language: Language;
   onToggleTheme: () => void;
+  onChangeLanguage: (language: Language) => void;
 };
-
-const navItems = [
-  { label: "Beranda", href: "home" },
-  { label: "Pengalaman", href: "experience" },
-  { label: "Pendidikan", href: "education" },
-  { label: "Organisasi", href: "organization" },
-  { label: "Keterampilan", href: "skills" },
-  { label: "Kontak", href: "contact" },
-];
 
 const DESKTOP_NAVBAR_OFFSET = 120;
 const MOBILE_NAVBAR_OFFSET = 160;
@@ -27,9 +23,21 @@ const smoothEase = [0.22, 1, 0.36, 1] as const;
 const getNavbarOffset = () =>
   window.innerWidth < 768 ? MOBILE_NAVBAR_OFFSET : DESKTOP_NAVBAR_OFFSET;
 
-export function Navbar({ theme, onToggleTheme }: NavbarProps) {
+export function Navbar({
+  theme,
+  language,
+  onToggleTheme,
+  onChangeLanguage,
+}: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState<SectionId>("home");
+
+  const copy = uiCopy[language];
+
+  const navItems = sectionIds.map((sectionId) => ({
+    href: sectionId,
+    label: copy.nav[sectionId],
+  }));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,23 +48,23 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
         window.scrollY >= maxScrollPosition - BOTTOM_THRESHOLD;
 
       if (isNearBottom) {
-        setActiveSection(navItems[navItems.length - 1].href);
+        setActiveSection(sectionIds[sectionIds.length - 1]);
         return;
       }
 
       const navbarOffset = getNavbarOffset();
       const scrollPosition = window.scrollY + navbarOffset + 1;
-      let currentSection = "home";
+      let currentSection: SectionId = "home";
 
-      for (const item of navItems) {
-        const sectionElement = document.getElementById(item.href);
+      for (const sectionId of sectionIds) {
+        const sectionElement = document.getElementById(sectionId);
 
         if (!sectionElement) {
           continue;
         }
 
         if (sectionElement.offsetTop <= scrollPosition) {
-          currentSection = item.href;
+          currentSection = sectionId;
         }
       }
 
@@ -74,7 +82,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
     };
   }, []);
 
-  const handleNavigate = (targetId: string) => {
+  const handleNavigate = (targetId: SectionId) => {
     const scrollToTarget = () => {
       const targetElement = document.getElementById(targetId);
 
@@ -117,7 +125,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
             type="button"
             onClick={() => handleNavigate("home")}
             className="flex min-w-0 cursor-pointer items-center gap-3 text-left"
-            aria-label="Menuju bagian beranda"
+            aria-label={copy.navbar.brandAriaLabel}
           >
             <div className="flex h-10 w-10 flex-none items-center justify-center rounded-2xl bg-[var(--nav-logo-bg)] text-sm font-bold text-[var(--nav-logo-text)]">
               {profile.initials}
@@ -128,7 +136,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
                 Edward Portfolio
               </p>
               <p className="truncate text-xs text-[var(--nav-subtitle)]">
-                Profil Profesional
+                {copy.navbar.profileLabel}
               </p>
             </div>
           </button>
@@ -155,14 +163,23 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
             })}
           </div>
 
-          <div className="hidden flex-none xl:flex">
-            <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+          <div className="hidden flex-none items-center gap-3 xl:flex">
+            <ThemeToggle
+              theme={theme}
+              onToggle={onToggleTheme}
+              labels={copy.theme}
+            />
+
+            <LanguageDropdown
+              language={language}
+              onChangeLanguage={onChangeLanguage}
+            />
           </div>
 
           <button
             type="button"
             className="inline-flex h-11 w-11 flex-none cursor-pointer items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--text-title)] shadow-sm transition hover:bg-[var(--surface-soft)] xl:hidden"
-            aria-label="Buka atau tutup menu navigasi"
+            aria-label={copy.navbar.menuButtonLabel}
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
             onClick={() => setIsOpen((current) => !current)}
@@ -254,14 +271,37 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
                 <div className="mt-2 flex items-center justify-between rounded-2xl bg-[var(--surface-soft)] px-4 py-3">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
-                      Tampilan
+                      {copy.theme.label}
                     </p>
                     <p className="mt-1 text-sm font-semibold text-[var(--text-title)]">
-                      {theme === "dark" ? "Mode Gelap" : "Mode Terang"}
+                      {theme === "dark"
+                        ? copy.theme.currentDark
+                        : copy.theme.currentLight}
                     </p>
                   </div>
 
-                  <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+                  <ThemeToggle
+                    theme={theme}
+                    onToggle={onToggleTheme}
+                    labels={copy.theme}
+                  />
+                </div>
+
+                <div className="mt-2 flex items-center justify-between rounded-2xl bg-[var(--surface-soft)] px-4 py-3">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                      {copy.language.label}
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-[var(--text-title)]">
+                      {languageOptions[language].label}
+                    </p>
+                  </div>
+
+                  <LanguageDropdown
+                    language={language}
+                    onChangeLanguage={onChangeLanguage}
+                    placement="top"
+                  />
                 </div>
               </motion.div>
             </motion.div>

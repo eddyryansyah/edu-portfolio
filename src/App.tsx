@@ -11,6 +11,7 @@ import { ProfilePhoto } from "./components/ProfilePhoto";
 import { SectionTitle } from "./components/SectionTitle";
 import { SkillPill } from "./components/SkillPill";
 import { Footer } from "./components/Footer";
+import type { Language } from "./data/i18n";
 import {
   certifications,
   educationHighlights,
@@ -27,6 +28,7 @@ type Theme = "dark" | "light";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window === "undefined") {
       return "dark";
@@ -35,6 +37,16 @@ export default function App() {
     const savedTheme = window.localStorage.getItem("theme");
 
     return savedTheme === "light" ? "light" : "dark";
+  });
+
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window === "undefined") {
+      return "id";
+    }
+
+    const savedLanguage = window.localStorage.getItem("language");
+
+    return savedLanguage === "en" ? "en" : "id";
   });
 
   useEffect(() => {
@@ -50,8 +62,17 @@ export default function App() {
     window.localStorage.setItem("theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    document.documentElement.lang = language;
+    window.localStorage.setItem("language", language);
+  }, [language]);
+
   const toggleTheme = () => {
     setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
+  };
+
+  const changeLanguage = (selectedLanguage: Language) => {
+    setLanguage(selectedLanguage);
   };
 
   return (
@@ -67,7 +88,12 @@ export default function App() {
         Lewati ke konten utama
       </a>
 
-      <Navbar theme={theme} onToggleTheme={toggleTheme} />
+      <Navbar
+        theme={theme}
+        language={language}
+        onToggleTheme={toggleTheme}
+        onChangeLanguage={changeLanguage}
+      />
 
       <section
         id="home"
