@@ -1,15 +1,6 @@
 import { Icon } from "../components/Icon";
+import type { ContactSectionCopy } from "../data/i18n";
 import type { Profile } from "../data/portfolio";
-
-type ContactSectionCopy = {
-  eyebrow: string;
-  title: string;
-  description: string;
-  emailAria: string;
-  whatsappAria: string;
-  linkedinAria: string;
-  phoneLabel: string;
-};
 
 type ContactSectionProps = {
   profile: Profile;

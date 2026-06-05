@@ -319,3 +319,12 @@ export const uiCopy = {
     };
   }
 >;
+
+export type UiCopy = (typeof uiCopy)[Language];
+
+export type HeroCopy = UiCopy["hero"];
+export type ExperienceSectionCopy = UiCopy["sections"]["experience"];
+export type EducationSectionCopy = UiCopy["sections"]["education"];
+export type OrganizationSectionCopy = UiCopy["sections"]["organization"];
+export type SkillsSectionCopy = UiCopy["sections"]["skills"];
+export type ContactSectionCopy = UiCopy["sections"]["contact"];

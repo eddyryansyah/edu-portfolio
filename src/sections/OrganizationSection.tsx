@@ -1,15 +1,7 @@
 import { BulletList } from "../components/BulletList";
 import { Icon } from "../components/Icon";
 import { SectionTitle } from "../components/SectionTitle";
-
-type OrganizationSectionCopy = {
-  eyebrow: string;
-  title: string;
-  description: string;
-  organizationName: string;
-  organizationRole: string;
-  organizationDescription: string;
-};
+import type { OrganizationSectionCopy } from "../data/i18n";
 
 type OrganizationSectionProps = {
   copy: OrganizationSectionCopy;

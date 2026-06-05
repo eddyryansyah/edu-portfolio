@@ -3,27 +3,12 @@ import { HeroBackground } from "../components/HeroBackground";
 import { ContactItem } from "../components/ContactItem";
 import { Icon } from "../components/Icon";
 import { ProfilePhoto } from "../components/ProfilePhoto";
+import type { HeroCopy } from "../data/i18n";
 import type { Profile } from "../data/portfolio";
-
-type HeroSectionCopy = {
-  badge: string;
-  profileTitle: string;
-  profileSubtitle: string;
-  primaryCta: string;
-  secondaryCta: string;
-  primaryCtaAria: string;
-  secondaryCtaAria: string;
-  contactLabels: {
-    location: string;
-    phone: string;
-    email: string;
-    linkedin: string;
-  };
-};
 
 type HeroSectionProps = {
   profile: Profile;
-  copy: HeroSectionCopy;
+  copy: HeroCopy;
 };
 
 export function HeroSection({ profile, copy }: HeroSectionProps) {

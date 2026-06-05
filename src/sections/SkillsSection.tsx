@@ -1,17 +1,8 @@
 import { Icon } from "../components/Icon";
 import { SectionTitle } from "../components/SectionTitle";
 import { SkillPill } from "../components/SkillPill";
+import type { SkillsSectionCopy } from "../data/i18n";
 import type { Certification } from "../data/portfolio";
-
-type SkillsSectionCopy = {
-  eyebrow: string;
-  title: string;
-  description: string;
-  technicalSkills: string;
-  certifications: string;
-  nonTechnicalSkills: string;
-  languages: string;
-};
 
 type SkillsSectionProps = {
   copy: SkillsSectionCopy;

@@ -1,12 +1,7 @@
 import type { Experience } from "../data/portfolio";
+import type { ExperienceSectionCopy } from "../data/i18n";
 import { ExperienceCard } from "../components/ExperienceCard";
 import { SectionTitle } from "../components/SectionTitle";
-
-type ExperienceSectionCopy = {
-  eyebrow: string;
-  title: string;
-  description: string;
-};
 
 type ExperienceSectionProps = {
   experiences: Experience[];

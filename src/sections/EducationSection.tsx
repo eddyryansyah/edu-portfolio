@@ -1,16 +1,7 @@
 import { BulletList } from "../components/BulletList";
 import { Icon } from "../components/Icon";
 import { SectionTitle } from "../components/SectionTitle";
-
-type EducationSectionCopy = {
-  eyebrow: string;
-  title: string;
-  description: string;
-  collegePeriod: string;
-  collegeDegree: string;
-  highSchoolPeriod: string;
-  highSchoolMajor: string;
-};
+import type { EducationSectionCopy } from "../data/i18n";
 
 type EducationSectionProps = {
   copy: EducationSectionCopy;
