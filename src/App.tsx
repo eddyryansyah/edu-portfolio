@@ -12,17 +12,8 @@ import { SectionTitle } from "./components/SectionTitle";
 import { SkillPill } from "./components/SkillPill";
 import { Footer } from "./components/Footer";
 import type { Language } from "./data/i18n";
-import {
-  certifications,
-  educationHighlights,
-  experiences,
-  highSchoolHighlights,
-  languages,
-  organizationPoints,
-  profile,
-  skills,
-  softSkills,
-} from "./data/portfolio";
+import { uiCopy } from "./data/i18n";
+import { portfolioContent } from "./data/portfolio";
 
 type Theme = "dark" | "light";
 
@@ -75,6 +66,10 @@ export default function App() {
     setLanguage(selectedLanguage);
   };
 
+  const content = portfolioContent[language];
+  const copy = uiCopy[language];
+  const { profile } = content;
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-[var(--page-bg)] text-[var(--text-title)] transition-colors duration-300">
       <AnimatePresence mode="wait">
@@ -85,7 +80,7 @@ export default function App() {
         href="#home"
         className="sr-only focus:not-sr-only focus:fixed focus:left-1/2 focus:top-24 focus:z-[9999] focus:-translate-x-1/2 focus:rounded-2xl focus:border focus:border-[var(--nav-active-bg)] focus:bg-[var(--nav-active-bg)] focus:px-4 focus:py-2.5 focus:text-sm focus:font-bold focus:text-[var(--nav-active-text)] focus:shadow-xl focus:shadow-slate-950/20"
       >
-        Lewati ke konten utama
+        {copy.accessibility.skipToMain}
       </a>
 
       <Navbar
@@ -110,7 +105,7 @@ export default function App() {
             className="min-w-0"
           >
             <p className="mb-4 inline-flex max-w-full rounded-full border border-[var(--hero-badge-border)] bg-[var(--hero-badge-bg)] px-4 py-2 text-xs font-medium text-[var(--hero-badge-text)] backdrop-blur sm:text-sm">
-              Portofolio Profesional
+              {copy.hero.badge}
             </p>
 
             <h1 className="max-w-full break-words text-3xl font-extrabold leading-tight tracking-tight text-[var(--hero-text-title)] sm:text-4xl md:text-6xl">
@@ -128,20 +123,20 @@ export default function App() {
             <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <a
                 href="#contact"
-                aria-label="Hubungi Edward Yulyardi Suparno"
+                aria-label={copy.hero.primaryCtaAria}
                 className="inline-flex w-full cursor-pointer items-center justify-center rounded-2xl bg-[var(--hero-primary-button-bg)] px-6 py-3 text-sm font-bold text-[var(--hero-primary-button-text)] shadow-sm transition hover:-translate-y-0.5 hover:opacity-90 hover:shadow-md active:translate-y-0 sm:w-auto"
               >
-                Hubungi Saya
+                {copy.hero.primaryCta}
                 <Icon name="external" className="ml-2 h-4 w-4" size={16} />
               </a>
 
               <a
                 href={profile.cvUrl}
                 download="CV Edward Yulyardi Suparno.pdf"
-                aria-label="Unduh CV Edward Yulyardi Suparno"
+                aria-label={copy.hero.secondaryCtaAria}
                 className="inline-flex w-full cursor-pointer items-center justify-center rounded-2xl border border-[var(--hero-secondary-button-border)] bg-transparent px-6 py-3 text-sm font-bold text-[var(--hero-secondary-button-text)] shadow-sm transition hover:-translate-y-0.5 hover:bg-[var(--hero-secondary-button-hover)] hover:shadow-md active:translate-y-0 sm:w-auto"
               >
-                Unduh CV
+                {copy.hero.secondaryCta}
                 <Icon name="download" className="ml-2 h-4 w-4" size={16} />
               </a>
             </div>
@@ -163,10 +158,10 @@ export default function App() {
 
                 <div className="min-w-0">
                   <h2 className="break-words text-lg font-bold sm:text-xl">
-                    Profil Profesional
+                    {copy.hero.profileTitle}
                   </h2>
                   <p className="mt-1 text-sm leading-6 text-slate-600">
-                    Inventori, Marketplace, dan Operasional
+                    {copy.hero.profileSubtitle}
                   </p>
                 </div>
               </div>
@@ -174,24 +169,24 @@ export default function App() {
               <div className="mt-6 grid min-w-0 gap-3">
                 <ContactItem
                   icon="map"
-                  label="Lokasi"
+                  label={copy.hero.contactLabels.location}
                   value={profile.location}
                 />
                 <ContactItem
                   icon="phone"
-                  label="Telepon / WhatsApp"
+                  label={copy.hero.contactLabels.phone}
                   value={profile.phone}
                   href={profile.whatsappUrl}
                 />
                 <ContactItem
                   icon="mail"
-                  label="Email"
+                  label={copy.hero.contactLabels.email}
                   value={profile.email}
                   href={`mailto:${profile.email}`}
                 />
                 <ContactItem
                   icon="linkedin"
-                  label="LinkedIn"
+                  label={copy.hero.contactLabels.linkedin}
                   value="edward-yulyardi-suparno"
                   href={profile.linkedin}
                 />
@@ -206,13 +201,13 @@ export default function App() {
         className="mx-auto max-w-6xl scroll-mt-28 px-6 py-16 md:py-20"
       >
         <SectionTitle
-          eyebrow="Pengalaman"
-          title="Pengalaman Kerja"
-          description="Pengalaman di bidang administrasi inventori, pengelolaan stok, marketplace, pelayanan pelanggan, pemrosesan pesanan, dan pelaporan operasional."
+          eyebrow={copy.sections.experience.eyebrow}
+          title={copy.sections.experience.title}
+          description={copy.sections.experience.description}
         />
 
         <div className="grid gap-6">
-          {experiences.map((experience) => (
+          {content.experiences.map((experience) => (
             <ExperienceCard
               key={`${experience.company}-${experience.role}`}
               experience={experience}
@@ -227,9 +222,9 @@ export default function App() {
       >
         <div className="mx-auto max-w-6xl px-6">
           <SectionTitle
-            eyebrow="Pendidikan"
-            title="Pendidikan"
-            description="Latar belakang pendidikan formal yang mendukung kemampuan logistik, administrasi, analisis, kedisiplinan, dan kerja sama."
+            eyebrow={copy.sections.education.eyebrow}
+            title={copy.sections.education.title}
+            description={copy.sections.education.description}
           />
 
           <div className="grid gap-6 lg:grid-cols-2">
@@ -244,16 +239,16 @@ export default function App() {
                     Institut Transportasi dan Logistik Trisakti
                   </h3>
                   <p className="mt-1 text-sm font-semibold text-[var(--text-muted)]">
-                    Jakarta, Indonesia | Aug 2017 - Aug 2024
+                    {copy.sections.education.collegePeriod}
                   </p>
                   <p className="mt-3 font-semibold text-[var(--text-title)]">
-                    S1 Manajemen Logistik | IPK 3,66/4,00
+                    {copy.sections.education.collegeDegree}
                   </p>
                 </div>
               </div>
 
               <div className="mt-6">
-                <BulletList items={educationHighlights} />
+                <BulletList items={content.educationHighlights} />
               </div>
             </article>
 
@@ -268,16 +263,16 @@ export default function App() {
                     SMA Taman Harapan 1
                   </h3>
                   <p className="mt-1 text-sm font-semibold text-[var(--text-muted)]">
-                    Bekasi, Indonesia | Jul 2014 - Mei 2017
+                    {copy.sections.education.highSchoolPeriod}
                   </p>
                   <p className="mt-3 font-semibold text-[var(--text-title)]">
-                    Ilmu Pengetahuan Alam
+                    {copy.sections.education.highSchoolMajor}
                   </p>
                 </div>
               </div>
 
               <div className="mt-6">
-                <BulletList items={highSchoolHighlights} />
+                <BulletList items={content.highSchoolHighlights} />
               </div>
             </article>
           </div>
@@ -291,9 +286,9 @@ export default function App() {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <SectionTitle
-              eyebrow="Organisasi"
-              title="Pengalaman Organisasi"
-              description="Pengalaman kepemimpinan yang mendukung kemampuan koordinasi, komunikasi, kedisiplinan, dan kerja sama tim."
+              eyebrow={copy.sections.organization.eyebrow}
+              title={copy.sections.organization.title}
+              description={copy.sections.organization.description}
             />
           </div>
 
@@ -305,21 +300,19 @@ export default function App() {
 
               <div>
                 <h3 className="text-xl font-bold text-[var(--text-title)]">
-                  Ekstrakurikuler Futsal
+                  {copy.sections.organization.organizationName}
                 </h3>
                 <p className="mt-1 text-sm font-semibold text-[var(--text-muted)]">
-                  Ketua | Bekasi, Indonesia | Sep 2015 - Sep 2016
+                  {copy.sections.organization.organizationRole}
                 </p>
                 <p className="mt-3 leading-7 text-[var(--text-body)]">
-                  Ekstrakurikuler olahraga futsal yang menjadi wadah
-                  pengembangan minat, kerja sama tim, kedisiplinan, dan
-                  kepemimpinan siswa.
+                  {copy.sections.organization.organizationDescription}
                 </p>
               </div>
             </div>
 
             <div className="mt-6">
-              <BulletList items={organizationPoints} />
+              <BulletList items={content.organizationPoints} />
             </div>
           </article>
         </div>
@@ -331,9 +324,9 @@ export default function App() {
       >
         <div className="mx-auto max-w-6xl px-6">
           <SectionTitle
-            eyebrow="Keterampilan"
-            title="Keterampilan & Sertifikasi"
-            description="Kombinasi kemampuan administrasi, pengolahan data, inventori, marketplace, dan kompetensi pendukung di bidang logistik."
+            eyebrow={copy.sections.skills.eyebrow}
+            title={copy.sections.skills.title}
+            description={copy.sections.skills.description}
           />
 
           <div className="grid gap-6 lg:grid-cols-3">
@@ -344,12 +337,12 @@ export default function App() {
                 </div>
 
                 <h3 className="text-2xl font-bold text-[var(--text-title)]">
-                  Keterampilan Teknis
+                  {copy.sections.skills.technicalSkills}
                 </h3>
               </div>
 
               <div className="flex flex-wrap gap-3">
-                {skills.map((skill) => (
+                {content.skills.map((skill) => (
                   <SkillPill key={skill}>{skill}</SkillPill>
                 ))}
               </div>
@@ -362,12 +355,12 @@ export default function App() {
                 </div>
 
                 <h3 className="text-2xl font-bold text-[var(--text-title)]">
-                  Sertifikasi
+                  {copy.sections.skills.certifications}
                 </h3>
               </div>
 
               <div className="grid gap-4">
-                {certifications.map((certification) => (
+                {content.certifications.map((certification) => (
                   <div
                     key={certification.title}
                     className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4"
@@ -390,12 +383,12 @@ export default function App() {
                 </div>
 
                 <h3 className="text-2xl font-bold text-[var(--text-title)]">
-                  Keterampilan Nonteknis
+                  {copy.sections.skills.nonTechnicalSkills}
                 </h3>
               </div>
 
               <div className="flex flex-wrap gap-3">
-                {softSkills.map((skill) => (
+                {content.softSkills.map((skill) => (
                   <SkillPill key={skill}>{skill}</SkillPill>
                 ))}
               </div>
@@ -408,12 +401,12 @@ export default function App() {
                 </div>
 
                 <h3 className="text-2xl font-bold text-[var(--text-title)]">
-                  Bahasa
+                  {copy.sections.skills.languages}
                 </h3>
               </div>
 
               <div className="grid gap-3">
-                {languages.map((language) => (
+                {content.languages.map((language) => (
                   <div
                     key={language}
                     className="rounded-2xl bg-[var(--surface)] p-4 shadow-sm ring-1 ring-[var(--border)]"
@@ -436,14 +429,13 @@ export default function App() {
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
           <div>
             <p className="mb-2 text-sm font-semibold uppercase tracking-[0.25em] text-[var(--text-muted)]">
-              Kontak
+              {copy.sections.contact.eyebrow}
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-[var(--contact-text)] md:text-4xl">
-              Tertarik untuk bekerja sama?
+              {copy.sections.contact.title}
             </h2>
             <p className="mt-4 max-w-xl leading-8 text-[var(--contact-muted)]">
-              Terbuka untuk peluang kerja di bidang administrasi inventori,
-              marketplace, gudang, operasional, dan logistik.
+              {copy.sections.contact.description}
             </p>
           </div>
 
@@ -451,7 +443,7 @@ export default function App() {
             <a
               className="group rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-5 text-[var(--text-title)] shadow-sm transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
               href={`mailto:${profile.email}`}
-              aria-label={`Kirim email ke ${profile.email}`}
+              aria-label={`${copy.sections.contact.emailAria} ${profile.email}`}
             >
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--icon-bg)] text-[var(--icon-text)] transition group-hover:scale-105">
                 <Icon name="mail" className="h-6 w-6" size={24} />
@@ -463,7 +455,7 @@ export default function App() {
             <a
               className="group rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-5 text-[var(--text-title)] shadow-sm transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
               href={profile.whatsappUrl}
-              aria-label={`Hubungi ${profile.name} melalui WhatsApp`}
+              aria-label={copy.sections.contact.whatsappAria}
               target="_blank"
               rel="noreferrer"
             >
@@ -471,7 +463,7 @@ export default function App() {
                 <Icon name="phone" className="h-6 w-6" size={24} />
               </div>
               <p className="text-sm text-[var(--text-muted)]">
-                Telepon / WhatsApp
+                {copy.sections.contact.phoneLabel}
               </p>
               <p className="font-bold">{profile.phone}</p>
             </a>
@@ -479,7 +471,7 @@ export default function App() {
             <a
               className="group rounded-3xl border border-[var(--border)] bg-[var(--surface-elevated)] p-5 text-[var(--text-title)] shadow-sm transition hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg sm:col-span-2"
               href={profile.linkedin}
-              aria-label={`Buka profil LinkedIn ${profile.name}`}
+              aria-label={copy.sections.contact.linkedinAria}
               target="_blank"
               rel="noreferrer"
             >
@@ -495,7 +487,7 @@ export default function App() {
         </div>
       </section>
 
-      <Footer />
+      <Footer language={language} />
     </main>
   );
 }
