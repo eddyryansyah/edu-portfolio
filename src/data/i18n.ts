@@ -63,6 +63,10 @@ export const uiCopy = {
     accessibility: {
       skipToMain: "Lewati ke konten utama",
     },
+    splash: {
+      ariaLabel: "Memuat halaman",
+      intro: "Kenalkan, Edward.",
+    },
     hero: {
       badge: "Portofolio Profesional",
       profileTitle: "Profil Profesional",
@@ -161,6 +165,10 @@ export const uiCopy = {
     accessibility: {
       skipToMain: "Skip to main content",
     },
+    splash: {
+      ariaLabel: "Loading page",
+      intro: "Meet Edward.",
+    },
     hero: {
       badge: "Professional Portfolio",
       profileTitle: "Professional Profile",
@@ -255,6 +263,10 @@ export const uiCopy = {
     accessibility: {
       skipToMain: string;
     };
+    splash: {
+      ariaLabel: string;
+      intro: string;
+    };
     hero: {
       badge: string;
       profileTitle: string;
@@ -322,6 +334,7 @@ export const uiCopy = {
 
 export type UiCopy = (typeof uiCopy)[Language];
 
+export type SplashCopy = UiCopy["splash"];
 export type HeroCopy = UiCopy["hero"];
 export type ExperienceSectionCopy = UiCopy["sections"]["experience"];
 export type EducationSectionCopy = UiCopy["sections"]["education"];

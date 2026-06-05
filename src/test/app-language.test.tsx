@@ -57,6 +57,12 @@ describe("App language integration", () => {
 
     render(<App />);
 
+    expect(
+      screen.getByRole("status", { name: /loading page/i }),
+    ).toBeInTheDocument();
+
+    expect(screen.getByText("Meet Edward.")).toBeInTheDocument();
+
     expect(document.documentElement).toHaveAttribute("lang", "en");
 
     expect(screen.getByRole("button", { name: "Home" })).toBeInTheDocument();

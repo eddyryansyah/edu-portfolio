@@ -31,7 +31,7 @@ export default function App() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-[var(--page-bg)] text-[var(--text-title)] transition-colors duration-300">
       <AnimatePresence mode="wait">
-        {isLoading ? <SplashScreen /> : null}
+        {isLoading ? <SplashScreen copy={copy.splash} /> : null}
       </AnimatePresence>
 
       <SkipLink href="#home">{copy.accessibility.skipToMain}</SkipLink>
