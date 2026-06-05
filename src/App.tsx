@@ -3,17 +3,21 @@ import { SplashScreen } from "./components/SplashScreen";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { SkipLink } from "./components/SkipLink";
-import { HeroSection } from "./sections/HeroSection";
-import { ExperienceSection } from "./sections/ExperienceSection";
-import { EducationSection } from "./sections/EducationSection";
-import { OrganizationSection } from "./sections/OrganizationSection";
-import { SkillsSection } from "./sections/SkillsSection";
-import { ContactSection } from "./sections/ContactSection";
+import {
+  ContactSection,
+  EducationSection,
+  ExperienceSection,
+  HeroSection,
+  OrganizationSection,
+  SkillsSection,
+} from "./sections";
 import { uiCopy } from "./data/i18n";
 import { portfolioContent } from "./data/portfolio";
-import { useThemePreference } from "./hooks/useThemePreference";
-import { useLanguagePreference } from "./hooks/useLanguagePreference";
-import { useSplashScreen } from "./hooks/useSplashScreen";
+import {
+  useLanguagePreference,
+  useSplashScreen,
+  useThemePreference,
+} from "./hooks";
 
 export default function App() {
   const isLoading = useSplashScreen();
