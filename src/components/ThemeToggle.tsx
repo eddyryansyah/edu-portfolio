@@ -1,4 +1,4 @@
-type Theme = "dark" | "light";
+import type { Theme } from "../types/theme";
 
 type ThemeToggleLabels = {
   toLight: string;

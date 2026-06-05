@@ -10,10 +10,9 @@ import { OrganizationSection } from "./sections/OrganizationSection";
 import { SkillsSection } from "./sections/SkillsSection";
 import { ContactSection } from "./sections/ContactSection";
 import type { Language } from "./data/i18n";
+import type { Theme } from "./types/theme";
 import { uiCopy } from "./data/i18n";
 import { portfolioContent } from "./data/portfolio";
-
-type Theme = "dark" | "light";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);

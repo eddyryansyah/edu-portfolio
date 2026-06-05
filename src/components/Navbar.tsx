@@ -1,12 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import type { Language, SectionId } from "../data/i18n";
+import type { Theme } from "../types/theme";
 import { languageOptions, sectionIds, uiCopy } from "../data/i18n";
 import { profile } from "../data/portfolio";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { ThemeToggle } from "./ThemeToggle";
-
-type Theme = "dark" | "light";
 
 type NavbarProps = {
   theme: Theme;
