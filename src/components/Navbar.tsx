@@ -1,14 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import type { Language, SectionId } from "../data/i18n";
-import { languageOptions, sectionIds, uiCopy } from "../data/i18n";
+import { sectionIds, uiCopy } from "../data/i18n";
 import { useActiveSection } from "../hooks/useActiveSection";
 import type { Theme } from "../types/theme";
-import { LanguageDropdown } from "./LanguageDropdown";
 import { NavbarBrand } from "./NavbarBrand";
 import { NavbarControls } from "./NavbarControls";
 import { NavbarLinks } from "./NavbarLinks";
-import { ThemeToggle } from "./ThemeToggle";
+import { NavbarMobileMenu } from "./NavbarMobileMenu";
 
 type NavbarProps = {
   theme: Theme;
@@ -132,70 +131,17 @@ export function Navbar({
           </button>
         </div>
 
-        <AnimatePresence initial={false}>
-          {isOpen ? (
-            <motion.div
-              id="mobile-navigation"
-              key="mobile-navigation"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.32, ease: smoothEase }}
-              className="overflow-hidden xl:hidden"
-            >
-              <motion.div
-                initial={{ y: -4, filter: "blur(4px)" }}
-                animate={{ y: 0, filter: "blur(0px)" }}
-                exit={{ y: -4, filter: "blur(4px)" }}
-                transition={{ duration: 0.26, ease: smoothEase }}
-                className="mt-3 grid gap-1 border-t border-[var(--border)] pt-3"
-              >
-                <NavbarLinks
-                  items={navItems}
-                  activeSection={activeSection}
-                  onNavigate={handleNavigate}
-                  variant="mobile"
-                />
-
-                <div className="mt-2 flex items-center justify-between rounded-2xl bg-[var(--surface-soft)] px-4 py-3">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
-                      {copy.theme.label}
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-[var(--text-title)]">
-                      {theme === "dark"
-                        ? copy.theme.currentDark
-                        : copy.theme.currentLight}
-                    </p>
-                  </div>
-
-                  <ThemeToggle
-                    theme={theme}
-                    onToggle={onToggleTheme}
-                    labels={copy.theme}
-                  />
-                </div>
-
-                <div className="mt-2 flex items-center justify-between rounded-2xl bg-[var(--surface-soft)] px-4 py-3">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
-                      {copy.language.label}
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-[var(--text-title)]">
-                      {languageOptions[language].label}
-                    </p>
-                  </div>
-
-                  <LanguageDropdown
-                    language={language}
-                    onChangeLanguage={onChangeLanguage}
-                    placement="top"
-                  />
-                </div>
-              </motion.div>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
+        <NavbarMobileMenu
+          isOpen={isOpen}
+          items={navItems}
+          activeSection={activeSection}
+          theme={theme}
+          language={language}
+          copy={copy}
+          onNavigate={handleNavigate}
+          onToggleTheme={onToggleTheme}
+          onChangeLanguage={onChangeLanguage}
+        />
       </motion.nav>
     </header>
   );
