@@ -5,12 +5,12 @@ import { Navbar } from "./components/Navbar";
 import { HeroBackground } from "./components/HeroBackground";
 import { BulletList } from "./components/BulletList";
 import { ContactItem } from "./components/ContactItem";
-import { ExperienceCard } from "./components/ExperienceCard";
 import { Icon } from "./components/Icon";
 import { ProfilePhoto } from "./components/ProfilePhoto";
 import { SectionTitle } from "./components/SectionTitle";
 import { SkillPill } from "./components/SkillPill";
 import { Footer } from "./components/Footer";
+import { ExperienceSection } from "./sections/ExperienceSection";
 import type { Language } from "./data/i18n";
 import { uiCopy } from "./data/i18n";
 import { portfolioContent } from "./data/portfolio";
@@ -196,25 +196,10 @@ export default function App() {
         </div>
       </section>
 
-      <section
-        id="experience"
-        className="mx-auto max-w-6xl scroll-mt-28 px-6 py-16 md:py-20"
-      >
-        <SectionTitle
-          eyebrow={copy.sections.experience.eyebrow}
-          title={copy.sections.experience.title}
-          description={copy.sections.experience.description}
-        />
-
-        <div className="grid gap-6">
-          {content.experiences.map((experience) => (
-            <ExperienceCard
-              key={`${experience.company}-${experience.role}`}
-              experience={experience}
-            />
-          ))}
-        </div>
-      </section>
+      <ExperienceSection
+        experiences={content.experiences}
+        copy={copy.sections.experience}
+      />
 
       <section
         id="education"
