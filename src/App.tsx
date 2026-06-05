@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { SplashScreen } from "./components/SplashScreen";
 import { Navbar } from "./components/Navbar";
@@ -13,19 +12,12 @@ import { uiCopy } from "./data/i18n";
 import { portfolioContent } from "./data/portfolio";
 import { useThemePreference } from "./hooks/useThemePreference";
 import { useLanguagePreference } from "./hooks/useLanguagePreference";
+import { useSplashScreen } from "./hooks/useSplashScreen";
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoading = useSplashScreen();
   const { theme, toggleTheme } = useThemePreference();
   const { language, changeLanguage } = useLanguagePreference();
-
-  useEffect(() => {
-    const loadingTimer = window.setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-
-    return () => window.clearTimeout(loadingTimer);
-  }, []);
 
   const content = portfolioContent[language];
   const copy = uiCopy[language];
