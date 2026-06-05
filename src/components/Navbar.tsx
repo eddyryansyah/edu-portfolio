@@ -2,10 +2,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import type { Language, SectionId } from "../data/i18n";
 import { languageOptions, sectionIds, uiCopy } from "../data/i18n";
-import { profile } from "../data/portfolio";
 import { useActiveSection } from "../hooks/useActiveSection";
 import type { Theme } from "../types/theme";
 import { LanguageDropdown } from "./LanguageDropdown";
+import { NavbarBrand } from "./NavbarBrand";
 import { ThemeToggle } from "./ThemeToggle";
 
 type NavbarProps = {
@@ -53,25 +53,11 @@ export function Navbar({
         className="overflow-visible rounded-[1.75rem] border border-[var(--nav-border)] bg-[var(--nav-bg)] px-4 py-3 shadow-xl shadow-slate-950/10 backdrop-blur-xl xl:px-5"
       >
         <div className="relative flex items-center justify-between">
-          <button
-            type="button"
+          <NavbarBrand
+            subtitle={copy.navbar.profileLabel}
+            ariaLabel={copy.navbar.brandAriaLabel}
             onClick={() => handleNavigate("home")}
-            className="flex min-w-0 cursor-pointer items-center gap-3 text-left"
-            aria-label={copy.navbar.brandAriaLabel}
-          >
-            <div className="flex h-10 w-10 flex-none items-center justify-center rounded-2xl bg-[var(--nav-logo-bg)] text-sm font-bold text-[var(--nav-logo-text)]">
-              {profile.initials}
-            </div>
-
-            <div className="min-w-0 leading-tight">
-              <p className="truncate text-sm font-bold text-[var(--nav-title)] sm:text-base">
-                Edward Portfolio
-              </p>
-              <p className="truncate text-xs text-[var(--nav-subtitle)]">
-                {copy.navbar.profileLabel}
-              </p>
-            </div>
-          </button>
+          />
 
           <div className="absolute left-[52.5%] hidden -translate-x-1/2 items-center justify-center gap-1 xl:flex 2xl:left-[52%]">
             {navItems.map((item) => {
