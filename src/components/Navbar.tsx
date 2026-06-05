@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
+import { smoothEase } from "../constants/animation";
 import type { Language, SectionId } from "../data/i18n";
 import { sectionIds, uiCopy } from "../data/i18n";
 import { useActiveSection } from "../hooks/useActiveSection";
@@ -18,8 +19,6 @@ type NavbarProps = {
   onToggleTheme: () => void;
   onChangeLanguage: (language: Language) => void;
 };
-
-const smoothEase = [0.22, 1, 0.36, 1] as const;
 
 export function Navbar({
   theme,

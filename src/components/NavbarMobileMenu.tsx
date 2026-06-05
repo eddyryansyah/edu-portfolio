@@ -1,7 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
+
+import { smoothEase } from "../constants/animation";
 import type { Language, SectionId, UiCopy } from "../data/i18n";
 import { languageOptions } from "../data/i18n";
 import type { Theme } from "../types/theme";
+
 import { LanguageDropdown } from "./LanguageDropdown";
 import { NavbarLinks } from "./NavbarLinks";
 import { ThemeToggle } from "./ThemeToggle";
@@ -22,8 +25,6 @@ type NavbarMobileMenuProps = {
   onToggleTheme: () => void;
   onChangeLanguage: (language: Language) => void;
 };
-
-const smoothEase = [0.22, 1, 0.36, 1] as const;
 
 export function NavbarMobileMenu({
   isOpen,
