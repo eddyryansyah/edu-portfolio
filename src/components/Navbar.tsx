@@ -6,6 +6,7 @@ import { useActiveSection } from "../hooks/useActiveSection";
 import type { Theme } from "../types/theme";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { NavbarBrand } from "./NavbarBrand";
+import { NavbarControls } from "./NavbarControls";
 import { NavbarLinks } from "./NavbarLinks";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -69,18 +70,13 @@ export function Navbar({
             />
           </div>
 
-          <div className="hidden flex-none items-center gap-3 xl:flex">
-            <ThemeToggle
-              theme={theme}
-              onToggle={onToggleTheme}
-              labels={copy.theme}
-            />
-
-            <LanguageDropdown
-              language={language}
-              onChangeLanguage={onChangeLanguage}
-            />
-          </div>
+          <NavbarControls
+            theme={theme}
+            language={language}
+            themeCopy={copy.theme}
+            onToggleTheme={onToggleTheme}
+            onChangeLanguage={onChangeLanguage}
+          />
 
           <button
             type="button"
