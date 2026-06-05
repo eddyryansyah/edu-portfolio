@@ -1,4 +1,6 @@
-export type Language = "id" | "en";
+export const supportedLanguages = ["id", "en"] as const;
+
+export type Language = (typeof supportedLanguages)[number];
 
 export type SectionId =
   | "home"

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { Language } from "../data/i18n";
-import { languageOptions, uiCopy } from "../data/i18n";
+import { languageOptions, supportedLanguages, uiCopy } from "../data/i18n";
 import { Icon } from "./Icon";
 
 type LanguageDropdownProps = {
@@ -8,8 +8,6 @@ type LanguageDropdownProps = {
   onChangeLanguage: (language: Language) => void;
   placement?: "bottom" | "top";
 };
-
-const languageItems: Language[] = ["id", "en"];
 
 export function LanguageDropdown({
   language,
@@ -78,7 +76,7 @@ export function LanguageDropdown({
           role="menu"
           className={`absolute right-0 z-[9999] w-48 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] px-1.5 py-2 text-[var(--text-title)] shadow-2xl shadow-slate-950/20 ${menuPositionClass}`}
         >
-          {languageItems.map((item) => {
+          {supportedLanguages.map((item) => {
             const isSelected = language === item;
             const option = languageOptions[item];
 

@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { languageOptions, sectionIds, uiCopy } from "../data/i18n";
+import {
+  languageOptions,
+  sectionIds,
+  supportedLanguages,
+  uiCopy,
+} from "../data/i18n";
 import {
   experiences,
   portfolioContent,
@@ -7,8 +12,6 @@ import {
   skills,
   softSkills,
 } from "../data/portfolio";
-
-const supportedLanguages = ["id", "en"] as const;
 
 describe("portfolio data", () => {
   it("provides default Indonesian portfolio profile and core data", () => {
