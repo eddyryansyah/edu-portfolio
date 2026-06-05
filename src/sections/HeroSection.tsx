@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { HeroBackground } from "../components/HeroBackground";
+import { SITE } from "../constants/site";
 import { ContactItem } from "../components/ContactItem";
 import { Icon } from "../components/Icon";
 import { ProfilePhoto } from "../components/ProfilePhoto";
@@ -55,7 +56,7 @@ export function HeroSection({ profile, copy }: HeroSectionProps) {
 
             <a
               href={profile.cvUrl}
-              download="CV Edward Yulyardi Suparno.pdf"
+              download={SITE.cvDownloadFilename}
               aria-label={copy.secondaryCtaAria}
               className="inline-flex w-full cursor-pointer items-center justify-center rounded-2xl border border-[var(--hero-secondary-button-border)] bg-transparent px-6 py-3 text-sm font-bold text-[var(--hero-secondary-button-text)] shadow-sm transition hover:-translate-y-0.5 hover:bg-[var(--hero-secondary-button-hover)] hover:shadow-md active:translate-y-0 sm:w-auto"
             >

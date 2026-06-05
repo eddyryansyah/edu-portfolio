@@ -1,3 +1,4 @@
+import { SITE } from "../constants/site";
 import { profile } from "../data/portfolio";
 
 type NavbarBrandProps = {
@@ -24,7 +25,7 @@ export function NavbarBrand({
 
       <div className="min-w-0 leading-tight">
         <p className="truncate text-sm font-bold text-[var(--nav-title)] sm:text-base">
-          Edward Portfolio
+          {SITE.name}
         </p>
         <p className="truncate text-xs text-[var(--nav-subtitle)]">
           {subtitle}

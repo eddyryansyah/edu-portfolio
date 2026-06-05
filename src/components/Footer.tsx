@@ -1,3 +1,4 @@
+import { SITE } from "../constants/site";
 import type { Language } from "../data/i18n";
 import { uiCopy } from "../data/i18n";
 
@@ -15,7 +16,7 @@ export function Footer({ language }: FooterProps) {
       <div className="mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-sm font-semibold text-[var(--footer-text)]">
-            Edward Portfolio
+            {SITE.name}
           </p>
           <p className="mt-1 text-sm text-[var(--footer-muted)]">
             {copy.description}
@@ -28,7 +29,7 @@ export function Footer({ language }: FooterProps) {
           </p>
 
           <a
-            href="https://github.com/eddyryansyah/edu-portfolio"
+            href={SITE.repositoryUrl}
             target="_blank"
             rel="noreferrer"
             className="font-medium text-[var(--footer-link)] underline decoration-transparent underline-offset-4 transition hover:text-[var(--footer-link-hover)] hover:decoration-current focus-visible:decoration-current"
