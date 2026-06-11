@@ -17,7 +17,7 @@ export function HeroSection({ profile, copy }: HeroSectionProps) {
     <section
       id="home"
       tabIndex={-1}
-      className="relative flex min-h-[100svh] scroll-mt-28 overflow-hidden bg-[var(--page-bg)] focus:outline-none"
+      className="hero-section relative flex min-h-[100svh] scroll-mt-28 overflow-hidden bg-[var(--page-bg)] focus:outline-none"
     >
       <HeroBackground />
 
@@ -32,15 +32,15 @@ export function HeroSection({ profile, copy }: HeroSectionProps) {
             {copy.badge}
           </p>
 
-          <h1 className="max-w-full break-words text-3xl font-extrabold leading-tight tracking-tight text-[var(--hero-text-title)] sm:text-4xl md:text-6xl">
+          <h1 className="hero-title max-w-full break-words text-3xl font-extrabold leading-tight tracking-tight text-[var(--hero-text-title)] sm:text-4xl md:text-6xl">
             {profile.name}
           </h1>
 
-          <p className="mt-4 text-lg font-semibold text-[var(--hero-text-muted)] sm:text-xl md:text-2xl">
+          <p className="hero-subtitle mt-4 text-lg font-semibold text-[var(--hero-text-muted)] sm:text-xl md:text-2xl">
             {profile.title}
           </p>
 
-          <p className="mt-6 max-w-2xl text-sm leading-7 text-[var(--hero-text-body)] sm:text-base md:text-lg md:leading-8">
+          <p className="hero-summary mt-6 max-w-2xl text-sm leading-7 text-[var(--hero-text-body)] sm:text-base md:text-lg md:leading-8">
             {profile.summary}
           </p>
 
