@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { SplashScreen } from "./components/SplashScreen";
 import { Navbar } from "./components/Navbar";
@@ -28,6 +29,39 @@ export default function App() {
   const content = portfolioContent[language];
   const copy = uiCopy[language];
   const { profile } = content;
+
+  useEffect(() => {
+    const root = document.documentElement;
+
+    const updateMobileDesktopMode = () => {
+      const isTouchDevice =
+        typeof window.matchMedia === "function"
+          ? window.matchMedia("(hover: none) and (pointer: coarse)").matches
+          : false;
+
+      const screenWidth = window.screen?.width ?? window.innerWidth;
+      const screenHeight = window.screen?.height ?? window.innerHeight;
+
+      const isPhysicalPhone = Math.min(screenWidth, screenHeight) <= 600;
+      const isDesktopViewport = window.innerWidth >= 768;
+
+      root.classList.toggle(
+        "is-mobile-desktop-mode",
+        isTouchDevice && isPhysicalPhone && isDesktopViewport,
+      );
+    };
+
+    updateMobileDesktopMode();
+
+    window.addEventListener("resize", updateMobileDesktopMode);
+    window.addEventListener("orientationchange", updateMobileDesktopMode);
+
+    return () => {
+      window.removeEventListener("resize", updateMobileDesktopMode);
+      window.removeEventListener("orientationchange", updateMobileDesktopMode);
+      root.classList.remove("is-mobile-desktop-mode");
+    };
+  }, []);
 
   useDocumentMetadata(copy.metadata);
 
