@@ -156,41 +156,152 @@ Project ini dibuat menggunakan teknologi modern:
 
 ## Getting Started
 
-### Clone repository
+### 1. Clone repository
 
 ```bash
 git clone https://github.com/eddyryansyah/edu-portfolio.git
 cd edu-portfolio
 ```
 
-### Install dependencies
+### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-### Run development server
+### 3. Run development server
 
 ```bash
 npm run dev
 ```
 
-### Build production
+Buka di browser:
+
+```text
+http://localhost:5173/edu-portfolio/
+```
+
+Untuk menghentikan server:
+
+```text
+Control + C
+```
+
+### 4. Build production
 
 ```bash
 npm run build
 ```
 
-### Run tests
-
-```bash
-npm run test
-```
-
-### Preview production build
+### 5. Preview production build
 
 ```bash
 npm run preview
+```
+
+Buka di browser:
+
+```text
+http://localhost:4173/edu-portfolio/
+```
+
+### 6. Preview on mobile device
+
+Pastikan komputer dan perangkat mobile berada di jaringan Wi-Fi yang sama.
+
+```bash
+npm run build
+npm run preview -- --host 0.0.0.0
+```
+
+Jika Vite menampilkan `Network` URL, buka URL tersebut di perangkat mobile.
+
+Jika `Network` URL tidak muncul, cek IP lokal komputer.
+
+macOS:
+
+```bash
+ipconfig getifaddr en0
+```
+
+Windows:
+
+```bash
+ipconfig
+```
+
+Cari nilai:
+
+```text
+IPv4 Address
+```
+
+Buka di perangkat mobile:
+
+```text
+http://<LOCAL_IP>:4173/edu-portfolio/
+```
+
+Contoh:
+
+```text
+http://192.168.1.10:4173/edu-portfolio/
+```
+
+Untuk mengecek mode desktop di mobile, aktifkan **Desktop site**, lalu refresh halaman.
+
+### 7. Run tests
+
+```bash
+npm run test -- --run
+```
+
+### 8. Run lint
+
+```bash
+npm run lint
+```
+
+### 9. Final check before deployment
+
+```bash
+npm run lint
+npm run test -- --run
+npm run build
+```
+
+Bersihkan folder `dist` jika diperlukan.
+
+macOS/Linux:
+
+```bash
+rm -rf dist
+```
+
+Windows Command Prompt:
+
+```cmd
+rmdir /s /q dist
+```
+
+Windows PowerShell:
+
+```powershell
+Remove-Item -Recurse -Force dist
+```
+
+### 10. Commit and push changes
+
+```bash
+git add -A
+git commit -m "type: short description"
+git push origin main
+```
+
+Contoh:
+
+```bash
+git commit -m "fix: improve hero layout on touch desktop viewport"
 ```
 
 ## Deployment
