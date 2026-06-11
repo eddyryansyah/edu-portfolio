@@ -21,6 +21,9 @@ export function ProfilePhoto({ src, alt, fallback }: ProfilePhotoProps) {
     <img
       src={src}
       alt={alt}
+      width={96}
+      height={96}
+      decoding="async"
       className="h-24 w-24 flex-none rounded-3xl object-cover object-top ring-4 ring-slate-100"
       onError={() => setHasError(true)}
     />

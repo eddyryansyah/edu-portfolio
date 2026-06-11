@@ -33,7 +33,7 @@ describe("portfolio data", () => {
       expect(content.profile.title.length).toBeGreaterThan(0);
       expect(content.profile.summary.length).toBeGreaterThan(80);
       expect(content.profile.cvUrl).toContain("edu-cv.pdf");
-      expect(content.profile.photoUrl).toContain("edu-profile.jpg");
+      expect(content.profile.photoUrl).toContain("edu-profile.webp");
 
       expect(content.experiences.length).toBeGreaterThanOrEqual(2);
 

@@ -21,7 +21,7 @@ export function HeroSection({ profile, copy }: HeroSectionProps) {
     >
       <HeroBackground />
 
-      <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 pb-16 pt-32 sm:px-6 md:grid-cols-[1.05fr_0.95fr] md:items-center md:pb-28 md:pt-36">
+      <div className="hero-layout relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 pb-16 pt-32 sm:px-6 md:grid-cols-[1.05fr_0.95fr] md:items-center md:pb-28 md:pt-36">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -70,7 +70,7 @@ export function HeroSection({ profile, copy }: HeroSectionProps) {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="w-full min-w-0 rounded-[2rem] border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur sm:p-5"
+          className="hero-profile-card w-full min-w-0 rounded-[2rem] border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur sm:p-5"
         >
           <div className="w-full min-w-0 overflow-hidden rounded-[1.5rem] bg-white p-4 text-slate-950 sm:p-6">
             <div className="flex min-w-0 items-center gap-4">

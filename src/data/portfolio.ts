@@ -56,7 +56,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       linkedin: "https://www.linkedin.com/in/edward-yulyardi-suparno",
       whatsappUrl: "https://wa.me/6288808936362",
       cvUrl: publicAsset("edu-cv.pdf"),
-      photoUrl: publicAsset("edu-profile.jpg"),
+      photoUrl: publicAsset("edu-profile.webp"),
       summary:
         "Lulusan S1 Manajemen Logistik dari Institut Transportasi dan Logistik Trisakti dengan IPK 3,66. Berpengalaman sebagai Admin Inventori dan Admin Marketplace, terutama dalam pengelolaan stok, administrasi barang, pemrosesan pesanan, pelayanan pelanggan, dan pengolahan data menggunakan Microsoft Excel.",
     },
@@ -154,7 +154,7 @@ export const portfolioContent: Record<Language, PortfolioContent> = {
       linkedin: "https://www.linkedin.com/in/edward-yulyardi-suparno",
       whatsappUrl: "https://wa.me/6288808936362",
       cvUrl: publicAsset("edu-cv.pdf"),
-      photoUrl: publicAsset("edu-profile.jpg"),
+      photoUrl: publicAsset("edu-profile.webp"),
       summary:
         "Bachelor's degree graduate in Logistics Management from Institut Transportasi dan Logistik Trisakti with a GPA of 3.66. Experienced as an Inventory Admin and Marketplace Admin, especially in stock management, goods administration, order processing, customer service, and data processing using Microsoft Excel.",
     },

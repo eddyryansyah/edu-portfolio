@@ -129,6 +129,20 @@ section[id] {
   }
 }
 
+@media (hover: none) and (pointer: coarse) and (max-width: 1024px) {
+  .hero-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    align-items: start !important;
+  }
+
+  .hero-profile-card {
+    width: 100% !important;
+    max-width: 28rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
 .hero-background {
   position: absolute;
   inset: 0;

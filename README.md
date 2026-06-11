@@ -72,8 +72,12 @@ Project ini dibuat menggunakan teknologi modern:
 │   │   └── deploy.yml
 │   └── FUNDING.yml
 ├── public/
+│   ├── apple-touch-icon.png
 │   ├── edu-cv.pdf
-│   ├── edu-profile.jpg
+│   ├── edu-profile.webp
+│   ├── favicon-16x16.png
+│   ├── favicon-32x32.png
+│   ├── favicon.ico
 │   ├── favicon.svg
 │   └── og-image.png
 ├── src/
